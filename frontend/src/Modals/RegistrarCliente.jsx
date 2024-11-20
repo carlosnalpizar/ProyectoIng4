@@ -4,6 +4,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
 import { Toast } from "primereact/toast";
+import { insertarCliente } from "../api/RegistrarCliente.api"; 
 import "../Css/RegistrarCliente.css";
 
 const RegistrarCliente = () => {
@@ -121,31 +122,59 @@ const RegistrarCliente = () => {
     return true;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validateForm()) {
       return;
     }
 
-    console.log("Datos enviados:", formData);
+    const clienteNuevo = {
+      direccion: formData.direccion,
+      telefono: formData.telefono,
+      correoElectronico: formData.correoElectronico,
+      Persona_Cedula: formData.cedula,
+      contrasena: formData.contrasena,
+    };
 
-    setFormData({
-      cedula: "",
-      nombre: "",
-      primerApellido: "",
-      segundoApellido: "",
-      direccion: "",
-      telefono: "",
-      correoElectronico: "",
-      contrasena: "",
-    });
+    try {
+      const response = await insertarCliente(clienteNuevo);
+      if (response.error) {
+   
+        toast.current.show({
+          severity: "error",
+          summary: "Registro exitoso",
+          detail: "El cliente se ha registrado correctamente",
+        });
 
-    toast.current.show({
-      severity: "success",
-      summary: "Registro exitoso",
-      detail: "El usuario se ha registrado correctamente",
-    });
+      
+        setFormData({
+          cedula: "",
+          nombre: "",
+          primerApellido: "",
+          segundoApellido: "",
+          direccion: "",
+          telefono: "",
+          correoElectronico: "",
+          contrasena: "",
+        });
 
-    setVisible(false);
+    
+        setVisible(false);
+      } else {
+  
+        toast.current.show({
+          severity: "success",
+          summary: "Registro exitoso",
+          detail: response.message || "El cliente se ha registrado correctamente",
+        });
+      }
+    } catch (error) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error en la comunicación",
+        detail: "No se pudo conectar con el servidor.",
+        className: "servidor"
+      });
+    }
   };
 
   return (
@@ -203,7 +232,6 @@ const RegistrarCliente = () => {
             />
             {errors.segundoApellido && <small className="p-error">{errors.segundoApellido}</small>}
           </div>
-
           <div className="field">
             <label htmlFor="direccion">Digite su dirección</label>
             <InputText
@@ -247,9 +275,7 @@ const RegistrarCliente = () => {
               strongLabel="Fuerte"
             />
           </div>
-          <div className="field">
-            <Button label="Registrar" icon="pi pi-check" onClick={handleSubmit} />
-          </div>
+          <Button label="Registrar" icon="pi pi-check" onClick={handleSubmit} />
         </div>
       </Dialog>
     </div>

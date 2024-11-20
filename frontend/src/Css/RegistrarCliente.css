@@ -67,13 +67,25 @@
   color: #065F46;
 }
 
-.p-toast .p-toast-message.p-toast-message-warn {
+ .p-toast-message.p-toast-message-warm {
+    background-color: #DEF7EC;
+    border-left: 6px solid #0D9488;
+    color: #065F46;
+}
+
+.servidor {
   background-color: #FEF3C7;
   border-left: 6px solid #D97706;
   color: #92400E;
 }
 
+.servidor {
+  color: #333;
+}
 
+.servidor {
+  color: #000000;
+}
 @media screen and (max-width: 768px) {
   .p-dialog {
     width: 90vw !important;

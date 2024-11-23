@@ -4,19 +4,13 @@ align-items: center;
 }
 
 body{
-    background: #e0f2f1;   
+    background: #e0f2f1 !important;   
 }
-.nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background: white;
-}
+
 .p-button.p-component{
-    background: #175859; 
+    background: #175859;
     border: none;
-    transition: background 0.3s ease; 
+    transition: background 0.3s ease;
 }
 
 .p-button.p-component:hover{
@@ -40,23 +34,74 @@ body{
     font-size: 1.5rem;
 }
 
-.nav-links {
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: white;
+    height: auto; 
+    box-sizing: border-box; 
+  }
+  
+  
+  
+  .nav-links {
     display: flex;
     gap: 2rem;
-}
-
-.nav-link {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+  
+  
+  .nav-link {
     color: #78909c;
     text-decoration: none;
-}
+  }
+  
 
-
+  .nav-toggle {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #175859;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      background: white;
+      position: absolute;
+      top: 100%; 
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    .nav-toggle {
+      display: block; 
+    }
+  }
+  
 .login-container {
     display: flex;
     align-items: center;
     background: white;
     margin-top: 60px;
     margin-left: 200px;
+    margin-bottom: 5rem; 
     padding: 2rem;
     max-height: 2500px !important;
     /*Agregaalgodeespaciointerno*/border-radius: 20px;
@@ -168,31 +213,17 @@ body{
 }
 
 .image-section {
-    position: relative; /* Para que los círculos se posicionen dentro de este contenedor */
+    position: relative;
 }
 
-
-.circle:nth-child(2) {
-    top: 30%;
-    left: 30%;
-    background-color: rgba(255, 123, 0, 0.5); /* Otro color para el segundo círculo */
-    z-index: 0; /* Coloca este círculo detrás */
-}
-
-.circle:nth-child(3) {
-    top: 50%;
-    left: 50%;
-    background-color: rgba(0, 255, 123, 0.5); /* Otro color para el tercer círculo */
-    z-index: 0;
-}
 
 .image-section img {
     width: 80%;
     height: auto;
-    border-radius: 50%; /* Si deseas que la imagen también sea circular */
+    border-radius: 50%; 
     object-fit: cover;
     position: relative;
-    z-index: 2; /* La imagen estará sobre los círculos */
+    z-index: 2;
 }
 
 
@@ -215,8 +246,8 @@ body{
 }
 
 .image-section img {
-    width: 700px; /* Ancho fijo */
-    height: 500px; /* Alto fijo */
+    width: 700px; 
+    height: 500px; 
     border-radius: 50%;
     object-fit: cover;
 }
@@ -231,3 +262,40 @@ body{
         display: none;
     }
 }
+
+.footer {
+
+    background-color: #111827;
+    padding: 3rem 1rem;
+  }
+  
+  .footer-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-logo-icon {
+    height: 2rem;
+    width: 2rem;
+    color: #14b8a6;
+  }
+  
+  .footer-logo-text {
+    margin-left: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .footer-copyright {
+    color: #9ca3af;
+  }
+  

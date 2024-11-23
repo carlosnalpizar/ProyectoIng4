@@ -39,9 +39,6 @@ const Login = () => {
                 </div>
             </div>
             <div className="image-section">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
                 <img src="/img/login.png" alt="Decorative" className='imagenLogin' />
             </div>
         </div>

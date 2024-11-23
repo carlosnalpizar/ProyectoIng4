@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "primereact/button";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -7,10 +6,7 @@ import RegistrarCliente from "../Modals/RegistrarCliente";
 
 const Navbar = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalVisible(true);
-  };
+  const [menuActive, setMenuActive] = useState(false); // Estado para alternar menú
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
@@ -25,35 +21,47 @@ const Navbar = () => {
     <>
       <div className="login-wrapper">
         <div className="nav">
-          <div className="logo">
+          {/* Logo */}
+          <div className="logo" style={{ display: "flex", alignItems: "center" }}>
             <img
               src="/img/navbar.png"
               alt="Logo"
-              style={{ width: "40px", height: "40px" }}
+              style={{ width: "40px", height: "40px", marginRight: "10px" }}
             />
+            <span style={{ fontWeight: "bold", fontSize: "1.5rem", color: "#005f73" }}>
+              Ouro Bank
+            </span>
           </div>
-          <div className="nav-links">
-            <a href="#" className="nav-link">
+
+          <button
+            className="nav-toggle"
+            onClick={() => setMenuActive(!menuActive)}
+            aria-label="Toggle menu"
+          >
+            <i className="pi pi-bars"></i>
+          </button>
+
+          {/* Enlaces del menú */}
+          <div className={`nav-links ${menuActive ? "active" : ""}`}>
+            <a href="/" className="nav-link">
               Inicio
             </a>
-            <a href="#" className="nav-link">
-              Opciones de Préstamo
+            <a href="/IniciarSesion" className="nav-link">
+              Iniciar Sesión
             </a>
             <a href="#" className="nav-link">
               Contáctenos
             </a>
           </div>
+
           <RegistrarCliente
-        visible={isModalVisible}
-        onHide={handleCloseModal} // Cierra el modal
-        onRegister={handleRegister} // Maneja el registro
+            visible={isModalVisible}
+            onHide={handleCloseModal}
+            onRegister={handleRegister}
             className="join-btn"
-      />
+          />
         </div>
       </div>
-
-      {/* Modal asociado al botón "Registrarse" */}
-     
     </>
   );
 };

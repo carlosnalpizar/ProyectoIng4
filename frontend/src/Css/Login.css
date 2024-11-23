@@ -55,9 +55,21 @@ body{
     display: flex;
     align-items: center;
     background: white;
-    margin-top: 30px; 
-    margin-left: 150px;
+    margin-top: 60px;
+    margin-left: 200px;
+    padding: 2rem;
+    max-height: 2500px !important;
+    /*Agregaalgodeespaciointerno*/border-radius: 20px;
+    /*Bordesredondeados*/box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /*Sombrasuave*/max-width: 1400px;
+    /*Defineunanchomáximo*/overflow: hidden;
+     /* Asegúrate de que el contenido no desborde los bordes */
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
+
 
 .login-section {
     flex: 1;
@@ -144,13 +156,45 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #e0f2f1;
+    background: #40a29d;
     border-radius: 50% 0 0 50%;
     -webkit-border-radius: 50% 0 0 50%;
     -moz-border-radius: 50% 0 0 50%;
     -ms-border-radius: 50% 0 0 50%;
     -o-border-radius: 50% 0 0 50%;
 }
+.active{
+    text-align: center;
+}
+
+.image-section {
+    position: relative; /* Para que los círculos se posicionen dentro de este contenedor */
+}
+
+
+.circle:nth-child(2) {
+    top: 30%;
+    left: 30%;
+    background-color: rgba(255, 123, 0, 0.5); /* Otro color para el segundo círculo */
+    z-index: 0; /* Coloca este círculo detrás */
+}
+
+.circle:nth-child(3) {
+    top: 50%;
+    left: 50%;
+    background-color: rgba(0, 255, 123, 0.5); /* Otro color para el tercer círculo */
+    z-index: 0;
+}
+
+.image-section img {
+    width: 80%;
+    height: auto;
+    border-radius: 50%; /* Si deseas que la imagen también sea circular */
+    object-fit: cover;
+    position: relative;
+    z-index: 2; /* La imagen estará sobre los círculos */
+}
+
 
 .decorative{
     border-radius: 60% 0 0 50%;
@@ -171,9 +215,12 @@ body{
 }
 
 .image-section img {
-    max-width: 80%;
-    height: auto;
+    width: 700px; /* Ancho fijo */
+    height: 500px; /* Alto fijo */
+    border-radius: 50%;
+    object-fit: cover;
 }
+
 
 @media (max-width: 768px) {
     .image-section {

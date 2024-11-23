@@ -16,10 +16,60 @@ const RegistroForm = () => {
     contrasena: ''
   });
 
-  const toast = useRef(null); // Crea una referencia para el Toast
+  const [warningMessages, setWarningMessages] = useState({
+    nombre: '',
+    primerApellido: '',
+    segundoApellido: '',
+    personaCedula: '',
+    telefono: ''
+  });
+  const toast = useRef(null); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (/\d/.test(value) && (name === 'nombre' || name === 'primerApellido' || name === 'segundoApellido')) {
+      const fieldName = name === 'nombre' ? 'Nombre' :
+                        name === 'primerApellido' ? 'Primer apellido' :
+                        name === 'segundoApellido' ? 'Segundo apellido' : '';
+      
+      setWarningMessages(prevState => ({
+        ...prevState,
+        [name]: `${fieldName} no puede contener números`
+      }));
+    } else {
+      setWarningMessages(prevState => ({
+        ...prevState,
+        [name]: ''
+      }));
+    }
+
+    if (name === 'personaCedula') {
+      if (!/^\d{9}$/.test(value)) {
+        setWarningMessages(prevState => ({
+          ...prevState,
+          personaCedula: 'La cédula debe ser un número de 9 dígitos'
+        }));
+      } else {
+        setWarningMessages(prevState => ({
+          ...prevState,
+          personaCedula: ''
+        }));
+      }
+    }
+
+    if (name === 'telefono' && !/^\d+$/.test(value)) {
+      setWarningMessages(prevState => ({
+        ...prevState,
+        telefono: 'El teléfono solo puede contener números'
+      }));
+    } else {
+      setWarningMessages(prevState => ({
+        ...prevState,
+        telefono: ''
+      }));
+    }
+
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -33,15 +83,13 @@ const RegistroForm = () => {
     try {
       const result = await insertarAnalista(formData);
       if (result.success) {
-        // Si el analista se creó exitosamente, muestra un toast de éxito
         toast.current.show({
           severity: 'success',
           summary: 'Éxito',
           detail: 'Analista creado exitosamente',
-          life: 3000 // Duración en ms
+          life: 3000 
         });
       } else {
-        // Si hubo un error, muestra un toast de error
         toast.current.show({
           severity: 'error',
           summary: 'Error',
@@ -50,7 +98,6 @@ const RegistroForm = () => {
         });
       }
     } catch (error) {
-      // Si ocurre un error en la solicitud, muestra un toast de error
       toast.current.show({
         severity: 'error',
         summary: 'Error',
@@ -83,6 +130,7 @@ const RegistroForm = () => {
                   className="form-input"
                   placeholder="Ingrese su nombre"
                 />
+                {warningMessages.nombre && <p className="warning-message">{warningMessages.nombre}</p>}
               </div>
 
               <div className="form-group">
@@ -97,6 +145,7 @@ const RegistroForm = () => {
                   className="form-input"
                   placeholder="Ingrese su primer apellido"
                 />
+                {warningMessages.primerApellido && <p className="warning-message">{warningMessages.primerApellido}</p>}
               </div>
 
               <div className="form-group">
@@ -110,6 +159,7 @@ const RegistroForm = () => {
                   className="form-input"
                   placeholder="Ingrese su segundo apellido"
                 />
+                {warningMessages.segundoApellido && <p className="warning-message">{warningMessages.segundoApellido}</p>}
               </div>
 
               <div className="form-group">
@@ -124,6 +174,7 @@ const RegistroForm = () => {
                   className="form-input"
                   placeholder="Ingrese su número de cédula"
                 />
+                {warningMessages.personaCedula && <p className="warning-message">{warningMessages.personaCedula}</p>}
               </div>
 
               <div className="form-group">
@@ -138,6 +189,7 @@ const RegistroForm = () => {
                   className="form-input"
                   placeholder="Ingrese su número de teléfono"
                 />
+                {warningMessages.telefono && <p className="warning-message">{warningMessages.telefono}</p>}
               </div>
 
               <div className="form-group">

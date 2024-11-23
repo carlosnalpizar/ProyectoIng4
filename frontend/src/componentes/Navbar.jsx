@@ -49,7 +49,7 @@ const Navbar = () => {
             <a href="/IniciarSesion" className="nav-link">
               Iniciar Sesión
             </a>
-            <a href="#" className="nav-link">
+            <a href="/RegistroAnalista" className="nav-link">
               Contáctenos
             </a>
           </div>

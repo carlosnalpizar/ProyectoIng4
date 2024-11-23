@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Paginas/Login'; 
 import Inicio from './Paginas/Inicio'; 
+import RegistroAnalista from './Paginas/registroAnalista'; 
 import './App.css'; 
 import "primereact/resources/themes/lara-light-cyan/theme.css";  
 import "primereact/resources/primereact.min.css";            
@@ -17,6 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/IniciarSesion" element={<Login />} />
+        <Route path="/RegistroAnalista" element={<RegistroAnalista />} />
       </Routes>
       <Footer />
     </Router>

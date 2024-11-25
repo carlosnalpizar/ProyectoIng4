@@ -143,7 +143,9 @@ const RegistrarCliente = () => {
     };
   
     try {
+      console.log("Datos enviados para insertar cliente:", clienteNuevo);
       const response = await insertarCliente(clienteNuevo);
+  
       if (response.error) {
         toast.current.show({
           severity: "error",

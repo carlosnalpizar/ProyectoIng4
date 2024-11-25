@@ -4,21 +4,20 @@ export const insertarCliente = async (clienteNuevo) => {
   try {
     const { nombre, primerApellido, segundoApellido, direccion, telefono, correoElectronico, personaCedula, contrasena } = clienteNuevo;
     console.log("Datos enviados para insertar cliente:", { direccion, telefono, correoElectronico, personaCedula, contrasena });
-    const response = await axios.post(
-      "http://localhost:3333/cliente/crear-cliente",
-      {
-        nombre, 
-        primerApellido,
-        segundoApellido,
-        direccion,
-        telefono,
-        correoElectronico,
-        personaCedula,
-        contrasena
-      }
-    );
-    console.log("Respuesta de la API:", response.data); 
-    return response.data;
+
+    const response = await axios.post("http://localhost:3333/cliente/crear-cliente", {
+      nombre,
+      primerApellido,
+      segundoApellido,
+      direccion,
+      telefono,
+      correoElectronico,
+      personaCedula,
+      contrasena,
+    });
+
+    console.log("Respuesta de la API:", response.data);
+    return response.data; // Retornamos la respuesta para manejarla en el frontend
   } catch (error) {
     if (error.response) {
       console.error("Error del servidor:", error.response.data);
@@ -27,8 +26,8 @@ export const insertarCliente = async (clienteNuevo) => {
     }
     throw error;
   }
-  
 };
+
 
 export const obtenerClientes = async () => {
   try {

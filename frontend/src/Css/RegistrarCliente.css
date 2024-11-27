@@ -48,6 +48,13 @@
   border: none !important;
 }
 
+.warning-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
 .p-button:hover {
   background-color: #0F766E !important;
 }

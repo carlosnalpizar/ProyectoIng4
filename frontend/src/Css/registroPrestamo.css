@@ -1,0 +1,113 @@
+.containerPrestamos {
+  max-width: 1100px !important;
+  max-height: 1000px !important;
+  padding: 2rem;
+  margin-left: 350px;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+
+}
+
+.form-input:disabled {
+  background-color: #92e1cb;
+  border-color: #dcdcdc;
+  color: #000000;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.loan-form-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 15px 30px rgba(130, 149, 149, 0.1);
+  border: 2px solid #40E0D0;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.loan-form-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 128, 128, 0.15);
+  transform: translateY(-5px);
+}
+
+.form-title {
+  color: #008080;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.form-input {
+  width: 80%;
+  padding: 0.75rem;
+  border: 2px solid #40E0D0;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  color: #008080;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #20B2AA;
+  box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
+}
+
+.form-label {
+  color: #008080;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.submit-button-container {
+  text-align: center;  /* Centra el botón horizontalmente */
+  margin-top: 1.5rem;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #40E0D0, #20B2AA);
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 400;
+  max-height: 200px !important;
+  max-width: 400px !important;
+  align-items: center !important;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(32, 178, 170, 0.2);
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #20B2AA, #008080);
+  transform: translateY(-3px);
+  align-items: center;
+  color: #ffffff;
+  box-shadow: 0 15px 25px rgba(32, 178, 170, 0.3);
+}
+
+.error-message {
+  color: #FF6B6B;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 1024px) {
+  .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+      grid-template-columns: 1fr;
+  }
+}

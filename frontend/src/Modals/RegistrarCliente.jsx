@@ -10,7 +10,7 @@ import "../Css/RegistrarCliente.css";
 const RegistrarCliente = () => {
   const [visible, setVisible] = useState(false);
   const [formData, setFormData] = useState({
-    cedula: "",
+    personaCedula: "",
     nombre: "",
     primerApellido: "",
     segundoApellido: "",
@@ -19,6 +19,8 @@ const RegistrarCliente = () => {
     correoElectronico: "",
     contrasena: "",
   });
+
+  
   const [errors, setErrors] = useState({});
   const toast = useRef(null);
 
@@ -33,10 +35,10 @@ const RegistrarCliente = () => {
       e.preventDefault();
       setErrors((prev) => ({
         ...prev,
-        cedula: "La cédula debe contener solo números.",
+        personaCedula: "La cédula debe contener solo números.",
       }));
     } else {
-      setErrors((prev) => ({ ...prev, cedula: "" }));
+      setErrors((prev) => ({ ...prev, personaCedula: "" }));
     }
   };
 
@@ -92,12 +94,14 @@ const RegistrarCliente = () => {
     }
   };
 
+  
+
   const validateForm = () => {
     const cedulaRegex = /^[0-9]{9}$/;
-    if (!cedulaRegex.test(formData.cedula)) {
+    if (!cedulaRegex.test(formData.personaCedula)) {
       setErrors((prev) => ({
         ...prev,
-        cedula: "La cédula debe contener solo 9 dígitos numéricos.",
+        personaCedula: "La cédula debe contener solo 9 dígitos numéricos.",
       }));
       return false;
     }
@@ -126,28 +130,38 @@ const RegistrarCliente = () => {
     if (!validateForm()) {
       return;
     }
-
+  
     const clienteNuevo = {
+      nombre: formData.nombre,
+      primerApellido: formData.primerApellido,
+      segundoApellido: formData.segundoApellido,
       direccion: formData.direccion,
       telefono: formData.telefono,
       correoElectronico: formData.correoElectronico,
-      Persona_Cedula: formData.cedula,
+      personaCedula: formData.personaCedula,
       contrasena: formData.contrasena,
     };
-
+  
     try {
+      console.log("Datos enviados para insertar cliente:", clienteNuevo);
       const response = await insertarCliente(clienteNuevo);
+  
       if (response.error) {
-   
         toast.current.show({
           severity: "error",
+          summary: "Error al registrar cliente",
+          detail: response.message || "Hubo un problema al registrar al cliente",
+        });
+      } else {
+        toast.current.show({
+          severity: "success",
           summary: "Registro exitoso",
           detail: "El cliente se ha registrado correctamente",
         });
-
-      
+  
+        // Reset the form data and close the dialog
         setFormData({
-          cedula: "",
+          personaCedula: "",
           nombre: "",
           primerApellido: "",
           segundoApellido: "",
@@ -156,26 +170,19 @@ const RegistrarCliente = () => {
           correoElectronico: "",
           contrasena: "",
         });
-
-    
-        setVisible(false);
-      } else {
   
-        toast.current.show({
-          severity: "success",
-          summary: "Registro exitoso",
-          detail: response.message || "El cliente se ha registrado correctamente",
-        });
+        setVisible(false);
       }
     } catch (error) {
       toast.current.show({
         severity: "error",
         summary: "Error en la comunicación",
-        detail: "No se pudo conectar con el servidor.",
-        className: "servidor"
+        detail: error.response?.data?.message || "No se pudo conectar con el servidor.",
+        className: "servidor",
       });
     }
   };
+  
 
   return (
     <div>
@@ -189,15 +196,15 @@ const RegistrarCliente = () => {
       >
         <div className="p-fluid">
           <div className="field">
-            <label htmlFor="cedula">Digite su cédula</label>
+            <label htmlFor="personaCedula">Digite su cédula</label>
             <InputText
-              id="cedula"
-              name="cedula"
-              value={formData.cedula}
+              id="personaCedula"
+              name="personaCedula"
+              value={formData.personaCedula}
               onChange={handleInputChange}
               onInput={handleCedulaInput}
             />
-            {errors.cedula && <small className="p-error">{errors.cedula}</small>}
+            {errors.personaCedula && <small className="p-error">{errors.personaCedula}</small>}
           </div>
           <div className="field">
             <label htmlFor="nombre">Digite su nombre</label>

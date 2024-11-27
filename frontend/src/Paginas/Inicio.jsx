@@ -1,12 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';  // Importa useNavigate desde react-router-dom
 import { ArrowRight, Shield, PiggyBank, Phone } from 'lucide-react';
 import '../Css/Login.css';
 import '../Css/Inicio.css';
 
 const BancoLanding = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/Informacion');  
+  };
+
+  const handleClick2 = () => {
+    navigate('/RegistroPrestamo');  
+  };
+
   return (
     <div className="in-h-screen bg-gray-50">
-      {/* Hero Section */}
       <div className="hero">
         <div className="hero-content">
           <h1 className="hero-title">
@@ -51,10 +61,10 @@ const BancoLanding = () => {
             Obtén tu préstamo en 3 simples pasos
           </p>
           <div className="cta-buttons">
-            <button className="cta-button-primary">
+            <button className="cta-button-primary"  onClick={handleClick2}>
               Solicitar préstamo
             </button>
-            <button className="cta-button-secondary">
+            <button className="cta-button-secondary" onClick={handleClick}>
               Más información
             </button>
           </div>

@@ -3,10 +3,17 @@ import { motion } from 'framer-motion';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import { useNavigate } from 'react-router-dom';
+
 import '../Css/informacion.css';
 
 const LoanMotivationPage = () => {
     const [showForm, setShowForm] = useState(false);
+    const navigate = useNavigate();
+      
+    const handleClick = () => {
+        navigate('/RegistroPrestamo');  
+    };
 
     const motivationCards = [
         {
@@ -68,7 +75,6 @@ const LoanMotivationPage = () => {
                     ))}
                 </div>
 
-                {/* Beneficios sin el grid */}
                 <div className="benefits-section rounded-2xl shadow-lg overflow-hidden mb-16">
                     <div className="p-12 flex flex-col justify-center items-center text-center">
                         <h2 className="text-3xl font-bold mb-6">
@@ -85,7 +91,6 @@ const LoanMotivationPage = () => {
                     </div>
                 </div>
 
-
                 <div className="p-12 flex flex-col justify-center items-center text-center">
                     <i className="pi pi-shield text-cyan-600" style={{ fontSize: '4rem', marginBottom: '1.5rem' }}></i>
                     <h3 className="text-2xl font-bold text-cyan-800 mb-4">
@@ -97,42 +102,13 @@ const LoanMotivationPage = () => {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => setShowForm(true)}
+                        onClick={handleClick}
                         className="request-button"
                     >
                         Solicitar Préstamo
                     </motion.button>
                 </div>
             </div>
-
-            {showForm && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <form className="space-y-4">
-                            <div>
-                                <label htmlFor="monto" className="block mb-2 text-cyan-700">
-                                    <i className="pi pi-credit-card mr-2" style={{ fontSize: '1rem' }}></i> Monto del Préstamo
-                                </label>
-                                <input
-                                    type="number"
-                                    id="monto"
-                                    name="monto"
-                                    className="input-elegant w-full"
-                                    placeholder="$ 10,000"
-                                    required
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="request-button w-full"
-                            >
-                                Enviar Solicitud
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

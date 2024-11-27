@@ -25,7 +25,7 @@ const BancoLanding = () => {
           <p className="hero-subtitle">
             Préstamos personalizados con las mejores tasas del mercado
           </p>
-          <button className="hero-button">
+          <button className="hero-button" onClick={handleClick2}>
             Solicitar ahora
             <ArrowRight className="hero-button-icon" />
           </button>

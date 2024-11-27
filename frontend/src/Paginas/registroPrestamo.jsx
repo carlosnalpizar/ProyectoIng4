@@ -105,7 +105,7 @@ const BankLoanForm = () => {
  
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="container">
+      <div className="containerPrestamos">
         <div className="loan-form-card">
           <h2 className="form-title text-3xl">Solicitud de Préstamo</h2>
           <form onSubmit={handleSubmit}>
@@ -235,7 +235,7 @@ const BankLoanForm = () => {
             </div>
 
             {/* Botón de envío */}
-            <div className="flex justify-center mt-6">
+            <div className="submit-button-container">
               <button
                 type="submit"
                 className="submit-button"

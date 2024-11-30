@@ -8,7 +8,8 @@ const BancoLanding = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/Informacion');  
+    navigate('/Informacion');
+    window.scrollTo(0, 0);
   };
 
   const handleClick2 = () => {

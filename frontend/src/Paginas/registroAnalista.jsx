@@ -23,16 +23,16 @@ const RegistroForm = () => {
     personaCedula: '',
     telefono: ''
   });
-  const toast = useRef(null); 
+  const toast = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (/\d/.test(value) && (name === 'nombre' || name === 'primerApellido' || name === 'segundoApellido')) {
       const fieldName = name === 'nombre' ? 'Nombre' :
-                        name === 'primerApellido' ? 'Primer apellido' :
-                        name === 'segundoApellido' ? 'Segundo apellido' : '';
-      
+        name === 'primerApellido' ? 'Primer apellido' :
+          name === 'segundoApellido' ? 'Segundo apellido' : '';
+
       setWarningMessages(prevState => ({
         ...prevState,
         [name]: `${fieldName} no puede contener números`
@@ -79,7 +79,7 @@ const RegistroForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Datos del formulario:', formData);
-
+  
     try {
       const result = await insertarAnalista(formData);
       if (result.success) {
@@ -87,13 +87,13 @@ const RegistroForm = () => {
           severity: 'success',
           summary: 'Éxito',
           detail: 'Analista creado exitosamente',
-          life: 3000 
+          life: 3000
         });
       } else {
         toast.current.show({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Error al crear el analista: ' + result.message,
+          severity: 'success',
+          summary: 'Éxito',
+          detail: `${result.message}`,
           life: 3000
         });
       }
@@ -101,11 +101,11 @@ const RegistroForm = () => {
       toast.current.show({
         severity: 'error',
         summary: 'Error',
-        detail: 'Error al enviar los datos: ' + error.message,
+        detail: `Error al enviar los datos: ${error.message}`,
         life: 3000
       });
     }
-  };
+  };  
 
   return (
     <div className="registro-container">
@@ -127,7 +127,7 @@ const RegistroForm = () => {
                   value={formData.nombre}
                   onChange={handleChange}
                   required
-                  className="form-input"
+                  className="inputAnalistas"
                   placeholder="Ingrese su nombre"
                 />
                 {warningMessages.nombre && <p className="warning-message">{warningMessages.nombre}</p>}
@@ -142,7 +142,7 @@ const RegistroForm = () => {
                   value={formData.primerApellido}
                   onChange={handleChange}
                   required
-                  className="form-input"
+                  className="inputAnalistas"
                   placeholder="Ingrese su primer apellido"
                 />
                 {warningMessages.primerApellido && <p className="warning-message">{warningMessages.primerApellido}</p>}
@@ -156,7 +156,7 @@ const RegistroForm = () => {
                   name="segundoApellido"
                   value={formData.segundoApellido}
                   onChange={handleChange}
-                  className="form-input"
+                  className="inputAnalistas"
                   placeholder="Ingrese su segundo apellido"
                 />
                 {warningMessages.segundoApellido && <p className="warning-message">{warningMessages.segundoApellido}</p>}
@@ -171,7 +171,7 @@ const RegistroForm = () => {
                   value={formData.personaCedula}
                   onChange={handleChange}
                   required
-                  className="form-input"
+                  className="inputAnalistas"
                   placeholder="Ingrese su número de cédula"
                 />
                 {warningMessages.personaCedula && <p className="warning-message">{warningMessages.personaCedula}</p>}
@@ -186,7 +186,7 @@ const RegistroForm = () => {
                   value={formData.telefono}
                   onChange={handleChange}
                   required
-                  className="form-input"
+                  className="inputAnalistas"
                   placeholder="Ingrese su número de teléfono"
                 />
                 {warningMessages.telefono && <p className="warning-message">{warningMessages.telefono}</p>}
@@ -201,7 +201,7 @@ const RegistroForm = () => {
                   value={formData.correoElectronico}
                   onChange={handleChange}
                   required
-                  className="form-input"
+                  className="inputAnalistas"
                   placeholder="correo@ejemplo.com"
                 />
               </div>
@@ -216,7 +216,7 @@ const RegistroForm = () => {
                     value={formData.contrasena}
                     onChange={handleChange}
                     required
-                    className="form-input"
+                    className="inputAnalistas"
                     placeholder="Ingrese su contraseña"
                   />
                   <button
@@ -230,9 +230,14 @@ const RegistroForm = () => {
               </div>
             </div>
 
-            <button type="submit" className="submit-button">
-              Crear cuenta
-            </button>
+
+
+            <div class="submit-button-container">
+              <button type="submit" className="submit-button">
+                Crear cuenta
+              </button>
+            </div>
+
 
             <p className="form-footer">
               * Campos obligatorios

@@ -10,28 +10,29 @@ const BankLoanForm = () => {
     plazoMeses: '',
     fechaInicio: '',
     fechaVencimiento: '',
-    numeroPrestamo: '', // Inicialmente vacío
+    numeroPrestamo: '',
     tasaInteresMoratoria: 10,
-    diaPago: '', // Campo numérico para día de pago
+    diaPago: '', 
     clientesPersonaCedula: '',
-    IdClientes: '', // Campo para el ID del cliente
-    estadoPrestamo: 2  // Establecer estado predeterminado a 2
+    IdClientes: '', 
+    estadoPrestamo: 2 
   });
 
   const [errors, setErrors] = useState({});
-  const toast = useRef(null);  // Crear una referencia para el Toast
+  const toast = useRef(null);  
 
   useEffect(() => {
     const fetchLastLoanNumber = async () => {
       try {
         const response = await axios.get("http://localhost:3333/prestamos/obtenerultimo");
         console.log("Respuesta de la API:", response.data);
-
-        const ultimoPrestamo = response.data.ultimoPrestamo || 0;
-        const randomNumber = Math.floor(Math.random() * 100) + 1;
-
-        const nuevoNumeroPrestamo = ultimoPrestamo + randomNumber;
-
+  
+        const ultimoPrestamo = response.data.ultimoPrestamo || "PRE-0";  
+  
+        const numeroPrestamo = parseInt(ultimoPrestamo.split("PRE-")[1], 10);
+  
+        const nuevoNumeroPrestamo = `PRE-${numeroPrestamo + 1}`;
+  
         setFormData(prevState => ({
           ...prevState,
           numeroPrestamo: nuevoNumeroPrestamo
@@ -40,8 +41,11 @@ const BankLoanForm = () => {
         console.error("Error al obtener el último número de préstamo:", error);
       }
     };
+  
     fetchLastLoanNumber();
   }, []);
+  
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;

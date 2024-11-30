@@ -56,45 +56,43 @@ const RegistrarCliente = () => {
   };
 
   const handleNombreInput = (e) => {
-    const regex = /^[A-Za-z\s]*$/;
+    const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]*$/; 
     if (!regex.test(e.target.value)) {
       e.preventDefault();
       setErrors((prev) => ({
         ...prev,
-        nombre: "El nombre solo debe contener letras.",
+        nombre: "El nombre solo debe contener letras y tildes.",
       }));
     } else {
       setErrors((prev) => ({ ...prev, nombre: "" }));
     }
   };
-
+  
   const handlePrimerApellidoInput = (e) => {
-    const regex = /^[A-Za-z\s]*$/;
+    const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]*$/; 
     if (!regex.test(e.target.value)) {
       e.preventDefault();
       setErrors((prev) => ({
         ...prev,
-        primerApellido: "El primer apellido solo debe contener letras.",
+        primerApellido: "El primer apellido solo debe contener letras y tildes.",
       }));
     } else {
       setErrors((prev) => ({ ...prev, primerApellido: "" }));
     }
   };
-
+  
   const handleSegundoApellidoInput = (e) => {
-    const regex = /^[A-Za-z\s]*$/;
+    const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]*$/; 
     if (!regex.test(e.target.value)) {
       e.preventDefault();
       setErrors((prev) => ({
         ...prev,
-        segundoApellido: "El segundo apellido solo debe contener letras.",
+        segundoApellido: "El segundo apellido solo debe contener letras y tildes.",
       }));
     } else {
       setErrors((prev) => ({ ...prev, segundoApellido: "" }));
     }
   };
-
-  
 
   const validateForm = () => {
     const cedulaRegex = /^[0-9]{9}$/;

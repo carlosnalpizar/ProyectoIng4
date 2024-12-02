@@ -10,6 +10,18 @@ const BankLoanForm = () => {
     plazoMeses: '',
     fechaInicio: '',
     fechaVencimiento: '',
+<<<<<<< HEAD
+    numeroPrestamo: '',
+    tasaInteresMoratoria: 10,
+    diaPago: '', 
+    clientesPersonaCedula: '',
+    IdClientes: '', 
+    estadoPrestamo: 2 
+  });
+
+  const [errors, setErrors] = useState({});
+  const toast = useRef(null);  
+=======
     numeroPrestamo: '', // Inicialmente vacío
     tasaInteresMoratoria: 10,
     diaPago: '', // Campo numérico para día de pago
@@ -20,18 +32,29 @@ const BankLoanForm = () => {
 
   const [errors, setErrors] = useState({});
   const toast = useRef(null);  // Crear una referencia para el Toast
+>>>>>>> origin/Ana_test
 
   useEffect(() => {
     const fetchLastLoanNumber = async () => {
       try {
         const response = await axios.get("http://localhost:3333/prestamos/obtenerultimo");
         console.log("Respuesta de la API:", response.data);
+<<<<<<< HEAD
+  
+        const ultimoPrestamo = response.data.ultimoPrestamo || "PRE-0";  
+  
+        const numeroPrestamo = parseInt(ultimoPrestamo.split("PRE-")[1], 10);
+  
+        const nuevoNumeroPrestamo = `PRE-${numeroPrestamo + 1}`;
+  
+=======
 
         const ultimoPrestamo = response.data.ultimoPrestamo || 0;
         const randomNumber = Math.floor(Math.random() * 100) + 1;
 
         const nuevoNumeroPrestamo = ultimoPrestamo + randomNumber;
 
+>>>>>>> origin/Ana_test
         setFormData(prevState => ({
           ...prevState,
           numeroPrestamo: nuevoNumeroPrestamo
@@ -40,8 +63,16 @@ const BankLoanForm = () => {
         console.error("Error al obtener el último número de préstamo:", error);
       }
     };
+<<<<<<< HEAD
+  
     fetchLastLoanNumber();
   }, []);
+  
+  
+=======
+    fetchLastLoanNumber();
+  }, []);
+>>>>>>> origin/Ana_test
 
   const handleChange = (e) => {
     const { name, value } = e.target;

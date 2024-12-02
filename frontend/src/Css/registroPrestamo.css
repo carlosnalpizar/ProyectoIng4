@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+/* Contenedor principal responsivo */
+.containerPrestamos {
+  max-width: 70%; /* Se adapta al tamaño de la pantalla */
+  max-height: 100%;
+  padding: 2rem;
+  margin: 0 auto; /* Centra el contenedor */
+  margin-bottom: 20px !important;
+}
+
+/* Tarjeta del formulario */
+=======
 .containerPrestamos {
   max-width: 1100px !important;
   max-height: 1000px !important;
@@ -15,6 +27,7 @@
   cursor: not-allowed;
   opacity: 0.6;
 }
+>>>>>>> origin/Ana_test
 .loan-form-card {
   background: white;
   border-radius: 1rem;
@@ -29,6 +42,10 @@
   transform: translateY(-5px);
 }
 
+<<<<<<< HEAD
+/* Título del formulario */
+=======
+>>>>>>> origin/Ana_test
 .form-title {
   color: #008080;
   font-weight: 700;
@@ -37,6 +54,32 @@
   letter-spacing: 1px;
 }
 
+<<<<<<< HEAD
+/* Grid del formulario */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas por defecto */
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tabletas */
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+    gap: 0.5rem;
+  }
+}
+
+/* Inputs del formulario */
+.form-input {
+  width: 100%; /* Asegura que ocupe todo el ancho */
+=======
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -45,6 +88,7 @@
 
 .form-input {
   width: 80%;
+>>>>>>> origin/Ana_test
   padding: 0.75rem;
   border: 2px solid #40E0D0;
   border-radius: 0.5rem;
@@ -53,12 +97,27 @@
   color: #008080;
 }
 
+<<<<<<< HEAD
+.form-input:disabled {
+  background-color: #92e1cb; /* Color definido para disabled */
+  border-color: #dcdcdc;
+  color: #000000;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+=======
+>>>>>>> origin/Ana_test
 .form-input:focus {
   outline: none;
   border-color: #20B2AA;
   box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
 }
 
+<<<<<<< HEAD
+/* Etiquetas del formulario */
+=======
+>>>>>>> origin/Ana_test
 .form-label {
   color: #008080;
   font-weight: 600;
@@ -66,8 +125,14 @@
   display: block;
 }
 
+<<<<<<< HEAD
+/* Botón de envío */
+.submit-button-container {
+  text-align: center; /* Centra el botón horizontalmente */
+=======
 .submit-button-container {
   text-align: center;  /* Centra el botón horizontalmente */
+>>>>>>> origin/Ana_test
   margin-top: 1.5rem;
 }
 
@@ -78,28 +143,75 @@
   padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
   font-weight: 400;
+<<<<<<< HEAD
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(32, 178, 170, 0.2);
+  width: 100%; /* Botón responsivo */
+  max-width: 400px; /* Ancho máximo */
+=======
   max-height: 200px !important;
   max-width: 400px !important;
   align-items: center !important;
   letter-spacing: 1px;
   transition: all 0.3s ease;
   box-shadow: 0 10px 20px rgba(32, 178, 170, 0.2);
+>>>>>>> origin/Ana_test
 }
 
 .submit-button:hover {
   background: linear-gradient(135deg, #20B2AA, #008080);
   transform: translateY(-3px);
+<<<<<<< HEAD
+=======
   align-items: center;
+>>>>>>> origin/Ana_test
   color: #ffffff;
   box-shadow: 0 15px 25px rgba(32, 178, 170, 0.3);
 }
 
+<<<<<<< HEAD
+/* Mensajes de error */
+=======
+>>>>>>> origin/Ana_test
 .error-message {
   color: #FF6B6B;
   font-size: 0.8rem;
   margin-top: 0.25rem;
 }
 
+<<<<<<< HEAD
+/* Responsividad adicional */
+@media (max-width: 768px) {
+  .loan-form-card {
+    padding: 1.5rem;
+  }
+
+  .submit-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .containerPrestamos {
+    padding: 1rem;
+  }
+
+  .form-title {
+    font-size: 1.2rem;
+  }
+
+  .form-input {
+    padding: 0.5rem;
+  }
+
+  .submit-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+=======
 @media (max-width: 1024px) {
   .form-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -111,3 +223,4 @@
       grid-template-columns: 1fr;
   }
 }
+>>>>>>> origin/Ana_test

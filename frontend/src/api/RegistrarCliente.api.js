@@ -17,7 +17,10 @@ export const insertarCliente = async (clienteNuevo) => {
     });
 
     console.log("Respuesta de la API:", response.data);
-    return response.data; // Retornamos la respuesta para manejarla en el frontend
+
+    return response.data;
+
+
   } catch (error) {
     if (error.response) {
       console.error("Error del servidor:", error.response.data);
@@ -31,13 +34,15 @@ export const insertarCliente = async (clienteNuevo) => {
 
 export const obtenerClientes = async () => {
   try {
-    const response = await axios.get("http://localhost:3333/cliente/obtenerClientes");
+    const response = await axios.get("http://localhost:3333/cliente/obtener-clientes");
+
     return response.data;
   } catch (error) {
     console.error("Error al obtener la lista de clientes:", error);
     throw error;
   }
 };
+
 
 export const obtenerClientePorId = async (personaCedula) => {
   try {
@@ -49,15 +54,37 @@ export const obtenerClientePorId = async (personaCedula) => {
   }
 };
 
-export const eliminarCliente = async (personaCedula) => {
+
+export const eliminarCliente = async (idClientes) => {
   try {
-    const response = await axios.delete(`http://localhost:3333/cliente/eliminarCliente/${personaCedula}`);
-    return response.data;
+    const response = await axios.delete(`http://localhost:3333/cliente/eliminar-cliente?idClientes=${idClientes}`);
+    
+    if (response.data.success && response.data.affectedRows > 0) {
+      return { success: false, message: 'Cliente eliminado exitosamente' };
+    } else {
+      return { success: true, message: 'No se encontró el cliente para eliminar' };
+    }
   } catch (error) {
     console.error("Error al eliminar el cliente:", error);
-    throw error;
+    return { success: false, message: 'Hubo un error al intentar eliminar el cliente.' };
   }
 };
+
+
+export const actualizarCliente = async (clienteData) => {
+  try {
+      const response = await axios.put('http://localhost:3333/cliente/modificar-cliente', clienteData);
+      return response.data;
+  } catch (error) {
+      if (error.response) {
+          throw new Error(error.response.data || 'Error en la respuesta del backend');
+      } else {
+          throw new Error(error.message || 'Error al modificar cliente');
+      }
+  }
+};
+
+
 
 export const modificarCliente = async (personaCedula, clienteActualizado) => {
   try {
@@ -84,3 +111,4 @@ export const modificarCliente = async (personaCedula, clienteActualizado) => {
     throw error;
   }
 };
+  

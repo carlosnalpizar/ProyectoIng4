@@ -1,6 +1,10 @@
 /* Contenedor principal */
 .registro-container {
+<<<<<<< HEAD
     min-height: 90vh;
+=======
+    min-height: 100vh;
+>>>>>>> origin/Ana_test
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,14 +13,22 @@
   
  
   .registro-main {
+<<<<<<< HEAD
     width: 70%;
     max-width: 200rem;
+=======
+    width: 100%;
+    max-width: 45rem;
+>>>>>>> origin/Ana_test
     padding: 2rem;
     background-color: #ffffff;
     border-radius: 1.25rem;
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.6s ease-out forwards;
+<<<<<<< HEAD
     align-items: center;
+=======
+>>>>>>> origin/Ana_test
   }
   
   .registro-title {
@@ -62,6 +74,7 @@
     font-size: 0.875rem;
   }
   
+<<<<<<< HEAD
   .inputAnalistas {
     width: 100%;
     padding: 0.75rem;
@@ -73,6 +86,18 @@
   }
   
   .inputAnalistas:focus {
+=======
+  .form-input {
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f9fafb;
+  }
+  
+  .form-input:focus {
+>>>>>>> origin/Ana_test
     outline: none;
     border-color: #4ade80;
     box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.15);
@@ -113,6 +138,7 @@
     font-weight: 600;
     border-radius: 0.5rem;
     border: none;
+<<<<<<< HEAD
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -122,6 +148,12 @@
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
 }
+=======
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+  }
+>>>>>>> origin/Ana_test
   
   .submit-button:hover {
     background-color: #2f855a;
@@ -173,6 +205,7 @@
       grid-template-columns: 1fr;
     }
   }
+<<<<<<< HEAD
   
   .p-toast .p-toast-message.p-toast-message-success {
     background-color: #DEF7EC;
@@ -185,4 +218,6 @@
       border-left: 6px solid #0D9488;
       color: #065F46;
   }
+=======
+>>>>>>> origin/Ana_test
   

@@ -9,6 +9,8 @@ import MantenimientoCliente from './Paginas/mantenimientoClientes';
 import Informacion from './Paginas/Informacion'
 import GestionClientes from './Paginas/mantenimientoClientes'
 import './App.css';  
+import 'primereact/resources/themes/lara-light-indigo/theme.css';  
+import "primereact/resources/themes/lara-light-cyan/theme.css";  
 import "primereact/resources/primereact.min.css";            
 import "primeicons/primeicons.css";            
 import Navbar from './componentes/Navbar';   
@@ -21,6 +23,7 @@ const App = () => {
        <Navbar />
       <Routes>
         <Route path="/" element={<Inicio />} />
+
         <Route path="/InicioAnalistas" element={<InicioAnalistas />} />
         <Route path="/IniciarSesion" element={<Login />} />
         <Route path="/mantenimientoClientes" element={<MantenimientoCliente />} />
@@ -28,6 +31,11 @@ const App = () => {
         <Route path="/Informacion" element={<Informacion />} />
         <Route path="/RegistroPrestamo" element={<RegistroPrestamo />} />
         <Route path="/GestionClientes" element={<GestionClientes />} />
+
+        <Route path="/IniciarSesion" element={<Login />} />
+        <Route path="/RegistroAnalista" element={<RegistroAnalista />} />
+        <Route path="/Informacion" element={<Informacion />} />
+        <Route path="/RegistroPrestamo" element={<RegistroPrestamo />} />
       </Routes>
       <Footer />
     </Router>

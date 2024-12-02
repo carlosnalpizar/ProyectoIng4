@@ -17,7 +17,10 @@ export const insertarCliente = async (clienteNuevo) => {
     });
 
     console.log("Respuesta de la API:", response.data);
+
     return response.data;
+
+
   } catch (error) {
     if (error.response) {
       console.error("Error del servidor:", error.response.data);
@@ -32,6 +35,7 @@ export const insertarCliente = async (clienteNuevo) => {
 export const obtenerClientes = async () => {
   try {
     const response = await axios.get("http://localhost:3333/cliente/obtener-clientes");
+
     return response.data;
   } catch (error) {
     console.error("Error al obtener la lista de clientes:", error);
@@ -39,15 +43,13 @@ export const obtenerClientes = async () => {
   }
 };
 
-export const obtenerClientePorId = async (idClientes) => {
+
+export const obtenerClientePorId = async (personaCedula) => {
   try {
-    const response = await axios.get(`http://localhost:3333/cliente/leer-cliente`, {
-      params: { idClientes }
-    });
-    console.log("Cliente obtenido:", response.data);
+    const response = await axios.get(`http://localhost:3333/cliente/obtenerCliente/${personaCedula}`);
     return response.data;
   } catch (error) {
-    console.error("Error al obtener el cliente:", error);
+    console.error("Error al obtener el cliente por cédula:", error);
     throw error;
   }
 };
@@ -84,5 +86,29 @@ export const actualizarCliente = async (clienteData) => {
 
 
 
-
-
+export const modificarCliente = async (personaCedula, clienteActualizado) => {
+  try {
+    const { direccion, telefono, correoElectronico, contrasena } = clienteActualizado;
+    console.log("Datos enviados para modificar cliente:", {
+      direccion,
+      telefono,
+      correoElectronico,
+      contrasena
+    });
+    const response = await axios.put(
+      `http://localhost:3333/cliente/modificarCliente/${personaCedula}`,
+      {
+        direccion,
+        telefono,
+        correoElectronico,
+        contrasena
+      }
+    );
+    console.log("Respuesta de la API:", response.data); 
+    return response.data;
+  } catch (error) {
+    console.error("Error al modificar el cliente:", error);
+    throw error;
+  }
+};
+  

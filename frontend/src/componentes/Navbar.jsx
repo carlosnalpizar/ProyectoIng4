@@ -54,13 +54,14 @@ const Navbar = () => {
                 className="barraNavegacion"
                 style={{ width: "100%" }}
               />
-               <Button
+             <Button
                 label="Inicio Analistas"
                 icon="pi pi-home"
                 onClick={() => navigate("/InicioAnalistas")}
                 className="barraNavegacion"
                 style={{ width: "100%", marginTop: "10px" }}
               />
+
               <Button
                 label="Iniciar Sesión"
                 icon="pi pi-sign-in"

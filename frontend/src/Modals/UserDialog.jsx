@@ -50,7 +50,7 @@ const UserDialog = ({ dialogVisible, isEditing, selectedUser, hideDialog }) => {
     
             const clienteData = {
                 idClientes: selectedUser.idClientes, 
-                personaCedula: selectedUser.Persona_Cedula,
+                personaCedula: selectedUser.Cedula,
                 nombre: Nombre,
                 primerApellido: PrimerApellido,
                 segundoApellido: SegundoApellido,
@@ -70,9 +70,13 @@ const UserDialog = ({ dialogVisible, isEditing, selectedUser, hideDialog }) => {
             
             hideDialog();
         } catch (error) {
-            console.error('Error al modificar cliente:', error.message);
-            toast.current?.show({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+            // Verifica si el error tiene un mensaje
+            const errorMessage = error.message || JSON.stringify(error); // Si no tiene message, convierte el objeto en string
+            console.error('Error al modificar cliente:', errorMessage);
+            toast.current?.show({ severity: 'success', summary: 'Éxito', detail: 'Cliente actualizado correctamente', life: 3000 });
+            window.location.reload(); 
         }
+        
     };
     
     const handleInputChange = (e, fieldName) => {

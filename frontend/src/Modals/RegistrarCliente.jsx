@@ -56,77 +56,44 @@ const RegistrarCliente = () => {
   };
 
   const handleNombreInput = (e) => {
-<<<<<<< HEAD
     const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]*$/; 
-=======
-    const regex = /^[A-Za-z\s]*$/;
->>>>>>> origin/Ana_test
     if (!regex.test(e.target.value)) {
       e.preventDefault();
       setErrors((prev) => ({
         ...prev,
-<<<<<<< HEAD
         nombre: "El nombre solo debe contener letras y tildes.",
-=======
-        nombre: "El nombre solo debe contener letras.",
->>>>>>> origin/Ana_test
       }));
     } else {
       setErrors((prev) => ({ ...prev, nombre: "" }));
     }
   };
-<<<<<<< HEAD
   
   const handlePrimerApellidoInput = (e) => {
     const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]*$/; 
-=======
-
-  const handlePrimerApellidoInput = (e) => {
-    const regex = /^[A-Za-z\s]*$/;
->>>>>>> origin/Ana_test
     if (!regex.test(e.target.value)) {
       e.preventDefault();
       setErrors((prev) => ({
         ...prev,
-<<<<<<< HEAD
         primerApellido: "El primer apellido solo debe contener letras y tildes.",
-=======
-        primerApellido: "El primer apellido solo debe contener letras.",
->>>>>>> origin/Ana_test
       }));
     } else {
       setErrors((prev) => ({ ...prev, primerApellido: "" }));
     }
   };
-<<<<<<< HEAD
   
   const handleSegundoApellidoInput = (e) => {
     const regex = /^[A-Za-záéíóúÁÉÍÓÚ\s]*$/; 
-=======
-
-  const handleSegundoApellidoInput = (e) => {
-    const regex = /^[A-Za-z\s]*$/;
->>>>>>> origin/Ana_test
     if (!regex.test(e.target.value)) {
       e.preventDefault();
       setErrors((prev) => ({
         ...prev,
-<<<<<<< HEAD
         segundoApellido: "El segundo apellido solo debe contener letras y tildes.",
-=======
-        segundoApellido: "El segundo apellido solo debe contener letras.",
->>>>>>> origin/Ana_test
       }));
     } else {
       setErrors((prev) => ({ ...prev, segundoApellido: "" }));
     }
   };
 
-<<<<<<< HEAD
-=======
-  
-
->>>>>>> origin/Ana_test
   const validateForm = () => {
     const cedulaRegex = /^[0-9]{9}$/;
     if (!cedulaRegex.test(formData.personaCedula)) {

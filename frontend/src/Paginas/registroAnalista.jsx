@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Toast } from 'primereact/toast'; // Importa el componente Toast
+import { Toast } from 'primereact/toast';
 import '../Css/registroAnalista.css';
 import { insertarAnalista } from "../api/RegistrarAnalista.api";
 
@@ -23,26 +23,16 @@ const RegistroForm = () => {
     personaCedula: '',
     telefono: ''
   });
-<<<<<<< HEAD
   const toast = useRef(null);
-=======
-  const toast = useRef(null); 
->>>>>>> origin/Ana_test
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (/\d/.test(value) && (name === 'nombre' || name === 'primerApellido' || name === 'segundoApellido')) {
       const fieldName = name === 'nombre' ? 'Nombre' :
-<<<<<<< HEAD
         name === 'primerApellido' ? 'Primer apellido' :
           name === 'segundoApellido' ? 'Segundo apellido' : '';
 
-=======
-                        name === 'primerApellido' ? 'Primer apellido' :
-                        name === 'segundoApellido' ? 'Segundo apellido' : '';
-      
->>>>>>> origin/Ana_test
       setWarningMessages(prevState => ({
         ...prevState,
         [name]: `${fieldName} no puede contener números`
@@ -89,11 +79,7 @@ const RegistroForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Datos del formulario:', formData);
-<<<<<<< HEAD
   
-=======
-
->>>>>>> origin/Ana_test
     try {
       const result = await insertarAnalista(formData);
       if (result.success) {
@@ -101,7 +87,6 @@ const RegistroForm = () => {
           severity: 'success',
           summary: 'Éxito',
           detail: 'Analista creado exitosamente',
-<<<<<<< HEAD
           life: 3000
         });
       } else {
@@ -109,15 +94,6 @@ const RegistroForm = () => {
           severity: 'success',
           summary: 'Éxito',
           detail: `${result.message}`,
-=======
-          life: 3000 
-        });
-      } else {
-        toast.current.show({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Error al crear el analista: ' + result.message,
->>>>>>> origin/Ana_test
           life: 3000
         });
       }
@@ -125,19 +101,11 @@ const RegistroForm = () => {
       toast.current.show({
         severity: 'error',
         summary: 'Error',
-<<<<<<< HEAD
         detail: `Error al enviar los datos: ${error.message}`,
         life: 3000
       });
     }
   };  
-=======
-        detail: 'Error al enviar los datos: ' + error.message,
-        life: 3000
-      });
-    }
-  };
->>>>>>> origin/Ana_test
 
   return (
     <div className="registro-container">
@@ -159,11 +127,7 @@ const RegistroForm = () => {
                   value={formData.nombre}
                   onChange={handleChange}
                   required
-<<<<<<< HEAD
                   className="inputAnalistas"
-=======
-                  className="form-input"
->>>>>>> origin/Ana_test
                   placeholder="Ingrese su nombre"
                 />
                 {warningMessages.nombre && <p className="warning-message">{warningMessages.nombre}</p>}
@@ -178,11 +142,7 @@ const RegistroForm = () => {
                   value={formData.primerApellido}
                   onChange={handleChange}
                   required
-<<<<<<< HEAD
                   className="inputAnalistas"
-=======
-                  className="form-input"
->>>>>>> origin/Ana_test
                   placeholder="Ingrese su primer apellido"
                 />
                 {warningMessages.primerApellido && <p className="warning-message">{warningMessages.primerApellido}</p>}
@@ -196,11 +156,7 @@ const RegistroForm = () => {
                   name="segundoApellido"
                   value={formData.segundoApellido}
                   onChange={handleChange}
-<<<<<<< HEAD
                   className="inputAnalistas"
-=======
-                  className="form-input"
->>>>>>> origin/Ana_test
                   placeholder="Ingrese su segundo apellido"
                 />
                 {warningMessages.segundoApellido && <p className="warning-message">{warningMessages.segundoApellido}</p>}
@@ -215,11 +171,7 @@ const RegistroForm = () => {
                   value={formData.personaCedula}
                   onChange={handleChange}
                   required
-<<<<<<< HEAD
                   className="inputAnalistas"
-=======
-                  className="form-input"
->>>>>>> origin/Ana_test
                   placeholder="Ingrese su número de cédula"
                 />
                 {warningMessages.personaCedula && <p className="warning-message">{warningMessages.personaCedula}</p>}
@@ -234,11 +186,7 @@ const RegistroForm = () => {
                   value={formData.telefono}
                   onChange={handleChange}
                   required
-<<<<<<< HEAD
                   className="inputAnalistas"
-=======
-                  className="form-input"
->>>>>>> origin/Ana_test
                   placeholder="Ingrese su número de teléfono"
                 />
                 {warningMessages.telefono && <p className="warning-message">{warningMessages.telefono}</p>}
@@ -253,11 +201,7 @@ const RegistroForm = () => {
                   value={formData.correoElectronico}
                   onChange={handleChange}
                   required
-<<<<<<< HEAD
                   className="inputAnalistas"
-=======
-                  className="form-input"
->>>>>>> origin/Ana_test
                   placeholder="correo@ejemplo.com"
                 />
               </div>
@@ -272,11 +216,7 @@ const RegistroForm = () => {
                     value={formData.contrasena}
                     onChange={handleChange}
                     required
-<<<<<<< HEAD
                     className="inputAnalistas"
-=======
-                    className="form-input"
->>>>>>> origin/Ana_test
                     placeholder="Ingrese su contraseña"
                   />
                   <button
@@ -290,7 +230,6 @@ const RegistroForm = () => {
               </div>
             </div>
 
-<<<<<<< HEAD
 
 
             <div class="submit-button-container">
@@ -299,11 +238,6 @@ const RegistroForm = () => {
               </button>
             </div>
 
-=======
-            <button type="submit" className="submit-button">
-              Crear cuenta
-            </button>
->>>>>>> origin/Ana_test
 
             <p className="form-footer">
               * Campos obligatorios

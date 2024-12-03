@@ -1,4 +1,3 @@
-// src/pages/UserManagementPage.js
 import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -8,7 +7,7 @@ import UserDialog from '../Modals/UserDialog';
 import RegisterClientModal from '../Modals/RegistrarCliente'; 
 import '../Css/mantenimientoCliente.css';
 import { Toast } from 'primereact/toast'; 
-
+import LoansDialog from '../Modals/LoansDialog';
 
 const UserManagementPage = () => {
     const [users, setUsers] = useState([]); 
@@ -16,7 +15,10 @@ const UserManagementPage = () => {
     const [registerDialogVisible, setRegisterDialogVisible] = useState(false); 
     const [selectedUser, setSelectedUser] = useState(null); 
     const [isEditing, setIsEditing] = useState(false); 
-
+    const [loans, setLoans] = useState([]); 
+    const [loansDialogVisible, setLoansDialogVisible] = useState(false); 
+    
+    
     const toast = useRef(null); 
 
     useEffect(() => {
@@ -41,7 +43,43 @@ const UserManagementPage = () => {
         setEditDialogVisible(true);
     };
 
-
+    const fetchLoans = async (personaCedula) => {
+        try {
+            const response = await fetch(`http://localhost:3333/prestamos/prestamoporcedula/${personaCedula}`);
+            const data = await response.json();
+    
+            console.log("Respuesta de la API:", data);
+    
+            const prestamos = data.prestamos?.flat() || [];
+            const prestamosValidos = prestamos.filter(p => p.numeroPrestamo && p.monto);
+    
+            if (prestamosValidos.length > 0) {
+                setLoans(prestamosValidos);
+                setLoansDialogVisible(true);
+            } else {
+                toast.current.show({
+                    severity: 'warn',
+                    summary: 'No hay préstamos',
+                    detail: 'No se encontraron préstamos para este usuario.',
+                    life: 3000,
+                });
+            }
+        } catch (error) {
+            console.error('Error al obtener los préstamos:', error);
+            toast.current.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'No se pudieron cargar los préstamos.',
+                life: 3000,
+            });
+        }
+    };
+    
+    
+    
+    
+    
+    
     const deleteUser = async (user) => {
         try {
             const response = await eliminarCliente(user.idClientes);
@@ -99,26 +137,18 @@ const UserManagementPage = () => {
 
     const actionTemplate = (rowData) => (
         <div className="flex-gap">
-            <button
-                className="btn-edit"
-                onClick={() => openEditDialog(rowData)} 
-            >
+            <button className="btn-edit" onClick={() => openEditDialog(rowData)}>
                 <i className="pi pi-pencil"></i>
             </button>
-            <button
-                className="btn-delete"
-                onClick={() => deleteUser(rowData)} 
-            >
+            <button className="btn-delete" onClick={() => deleteUser(rowData)}>
                 <i className="pi pi-trash"></i>
             </button>
-            <button
-                className="btn-info"
-                onClick={() => alert(`Información del usuario: ${rowData.nombre}`)}
-            >
+            <button className="btn-info" onClick={() => fetchLoans(rowData.Cedula)}>
                 <i className="pi pi-info-circle"></i>
             </button>
         </div>
     );
+    
 
     return (
         <div className="user-management-container">
@@ -163,6 +193,13 @@ const UserManagementPage = () => {
                 saveUser={saveUser}
                 hideDialog={() => setEditDialogVisible(false)} 
             />
+
+<LoansDialog
+    visible={loansDialogVisible}
+    loans={loans}
+    hideDialog={() => setLoansDialogVisible(false)}
+/>
+
 
             <Toast ref={toast} /> 
         </div>

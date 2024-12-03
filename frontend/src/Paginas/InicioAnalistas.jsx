@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import '../Css/inicioAnalistas.css'; 
 
 const LoanAnalystDashboard = () => {
-  const navigate = useNavigate();  // Usar useNavigate
+  const navigate = useNavigate(); 
 
   const services = [
     {
       icon: <Users className="icon-style" />,
       title: "Gestión de Clientes",
       description: "Administración integral de datos y relaciones con clientes",
-      route: "/GestionClientes"  // Ruta de redirección
+      route: "/GestionClientes" 
     },
     {
       icon: <FileSpreadsheet className="icon-style" />,
@@ -40,9 +40,9 @@ const LoanAnalystDashboard = () => {
     },
   ];
 
-  // Función para manejar el clic en el botón y redirigir
+ 
   const handleNavigate = (route) => {
-    navigate(route);  // Redirige a la ruta especificada
+    navigate(route);  
   };
 
   return (
@@ -61,7 +61,7 @@ const LoanAnalystDashboard = () => {
             <Button 
               label="Acceder" 
               className="p-button-success custom-button" 
-              onClick={() => handleNavigate(service.route)}  // Usar el handler para navegar
+              onClick={() => handleNavigate(service.route)}  
             />
           </div>
         ))}

@@ -70,8 +70,8 @@ const UserDialog = ({ dialogVisible, isEditing, selectedUser, hideDialog }) => {
             
             hideDialog();
         } catch (error) {
-            // Verifica si el error tiene un mensaje
-            const errorMessage = error.message || JSON.stringify(error); // Si no tiene message, convierte el objeto en string
+  
+            const errorMessage = error.message || JSON.stringify(error);
             console.error('Error al modificar cliente:', errorMessage);
             toast.current?.show({ severity: 'success', summary: 'Éxito', detail: 'Cliente actualizado correctamente', life: 3000 });
             window.location.reload(); 

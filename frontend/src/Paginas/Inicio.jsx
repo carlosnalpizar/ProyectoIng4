@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';  // Importa useNavigate desde react-router-dom
+import { useNavigate } from 'react-router-dom';  
 import { ArrowRight, Shield, PiggyBank, Phone } from 'lucide-react';
 import '../Css/Login.css';
 import '../Css/Inicio.css';

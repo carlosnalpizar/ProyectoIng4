@@ -1,16 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
-import { Toast } from 'primereact/toast'; // Asegúrate de importar Toast
+import { Toast } from 'primereact/toast';
 import axios from 'axios';
 import "../Css/LoansDialog.css";
 
 
 const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) => {
-    const [selectedLoan, setSelectedLoan] = useState(null); // Estado para almacenar el préstamo seleccionado
-    const [loading, setLoading] = useState(false); // Estado para manejar el cargando de la actualización
-    const toastRef = useRef(null); // Referencia para el Toast
-
+    const [selectedLoan, setSelectedLoan] = useState(null); 
+    const [loading, setLoading] = useState(false); 
+    const toastRef = useRef(null); 
     const safeToLowerCase = (value) => {
         return typeof value === 'string' ? value.toLowerCase() : String(value).toLowerCase();
     };
@@ -39,7 +38,7 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
     };
 
     const handleEditLoan = (loan) => {
-        setSelectedLoan(loan); // Guardamos el préstamo seleccionado en el estado
+        setSelectedLoan(loan); 
     };
 
     const handleDeleteLoan = async (loan) => {
@@ -49,35 +48,35 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
             try {
                 const response = await axios.delete(`http://localhost:3333/prestamos/eliminarPrestamo?idPrestamos=${loan.idPrestamos}`);
 
-                // Mostrar mensaje de éxito usando Toast
+       
                 toastRef.current.show({
                     severity: 'success',
                     summary: 'Préstamo Eliminado',
                     detail: `Préstamo con ID ${loan.idPrestamos} eliminado exitosamente.`,
-                    life: 3000, // Duración en milisegundos
+                    life: 3000,
 
                 });
                 window.location.reload();
-                // Aquí puedes actualizar tu lista de préstamos si es necesario
+
 
             } catch (error) {
                 console.error("Error al eliminar el préstamo:", error);
 
-                // Mostrar mensaje de error usando Toast
+
                 toastRef.current.show({
                     severity: 'error',
                     summary: 'Error',
                     detail: 'Hubo un error al intentar eliminar el préstamo.',
-                    life: 3000, // Duración en milisegundos
+                    life: 3000,
                 });
             }
         } else {
-            // Mostrar mensaje si la operación es cancelada
+         
             toastRef.current.show({
                 severity: 'info',
                 summary: 'Operación Cancelada',
                 detail: 'La eliminación del préstamo fue cancelada.',
-                life: 3000, // Duración en milisegundos
+                life: 3000,
             });
         }
     };
@@ -91,7 +90,6 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
     const handleSaveChanges = async () => {
         if (!selectedLoan) return;
 
-        // Validar si hay campos faltantes
         const requiredFields = [
             'monto',
             'plazoMeses',
@@ -107,16 +105,16 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
         for (let field of requiredFields) {
             if (!selectedLoan[field]) {
                 toastRef.current.show({ severity: 'error', summary: 'Error', detail: `El campo ${field} es obligatorio`, life: 3000 });
-                return; // Detener la ejecución si hay algún campo vacío
+                return;
             }
         }
 
-        setLoading(true); // Indicamos que estamos procesando la actualización
+        setLoading(true);
 
         try {
             const updatedLoan = await modificarPrestamo(selectedLoan);
-            onEditLoan(updatedLoan); // Llamamos al onEditLoan para actualizar el estado en el componente principal
-            setSelectedLoan(null); // Cerramos el modal
+            onEditLoan(updatedLoan);
+            setSelectedLoan(null);
             toastRef.current.show({ severity: 'success', summary: 'Éxito', detail: 'El préstamo se actualizó correctamente', life: 3000 }); // Muestra el Toast de éxito
             window.location.reload();
 
@@ -127,7 +125,7 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
             window.location.reload();
 
         } finally {
-            setLoading(false); // Deshabilitamos el estado de cargando
+            setLoading(false);
         }
     };
 
@@ -135,7 +133,6 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
 
     return (
         <>
-            {/* Renderiza el Toast fuera del Dialog principal */}
             <Toast ref={toastRef} />
             <Dialog
                 visible={visible}
@@ -236,7 +233,7 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
                                 <div className="form-row">
                                     <label>Plazo (Meses):</label>
                                     <select
-                                        value={selectedLoan.plazoMeses} // Asegúrate de que `plazoMeses` esté bien referenciado en el estado
+                                        value={selectedLoan.plazoMeses}
                                         onChange={(e) => setSelectedLoan({ ...selectedLoan, plazoMeses: e.target.value })}
                                         className="form-input"
                                     >

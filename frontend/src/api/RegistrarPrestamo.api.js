@@ -1,10 +1,9 @@
 import axios from "axios";
 
-// Insertar un nuevo préstamo
 export const insertarPrestamo = async (prestamoNuevo) => {
   try {
     const response = await axios.post("http://localhost:3333/prestamos/nuevoPrestamo", prestamoNuevo);
-    return response.data; // Retornamos la respuesta para manejarla en el frontend
+    return response.data; 
   } catch (error) {
     if (error.response) {
       console.error("Error del servidor:", error.response.data);
@@ -15,7 +14,7 @@ export const insertarPrestamo = async (prestamoNuevo) => {
   }
 };
 
-// Obtener la lista de préstamos
+
 export const obtenerPrestamos = async () => {
   try {
     const response = await axios.get("http://localhost:3333/prestamo/lista");
@@ -26,7 +25,7 @@ export const obtenerPrestamos = async () => {
   }
 };
 
-// Obtener el último préstamo
+
 export const obtenerUltimoPrestamo = async () => {
   try {
     const response = await axios.get("http://localhost:3333/prestamos/obtenerultimo");
@@ -37,11 +36,11 @@ export const obtenerUltimoPrestamo = async () => {
   }
 };
 
-// Eliminar un préstamo por número de préstamo
+
 export const eliminarPrestamoPorId = async (idPrestamos) => {
   try {
     const response = await axios.delete(`http://localhost:3333/prestamos/eliminarPrestamo/${idPrestamos}`);
-    return response.data; // Retornamos la respuesta del servidor
+    return response.data; 
   } catch (error) {
     if (error.response) {
       console.error("Error del servidor:", error.response.data);
@@ -52,7 +51,7 @@ export const eliminarPrestamoPorId = async (idPrestamos) => {
   }
 };
 
-// Modificar un préstamo
+
 export const modificarPrestamo = async (idPrestamos, prestamoActualizado) => {
   try {
     const response = await axios.put(

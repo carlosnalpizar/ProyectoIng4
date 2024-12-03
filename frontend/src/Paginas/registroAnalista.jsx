@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Toast } from 'primereact/toast'; // Importa el componente Toast
+import { Toast } from 'primereact/toast';
 import '../Css/registroAnalista.css';
 import { insertarAnalista } from "../api/RegistrarAnalista.api";
 

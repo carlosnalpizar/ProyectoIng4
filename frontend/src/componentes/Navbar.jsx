@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
-import { getProfile, logout } from "../api/Login";
+import { logout } from "../api/Login";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -10,15 +10,15 @@ import "primeicons/primeicons.css";
 import RegistrarCliente from "../Modals/RegistrarCliente";
 
 const Navbar = ({ role, setRole }) => {
-  const [visible, setVisible] = useState(false); // Controla la visibilidad del Sidebar
-  const [isModalVisible, setIsModalVisible] = useState(false); // Controla la visibilidad del Modal
+  const [visible, setVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      await logout(); // Cierra la sesión del usuario
-      setRole(null); // Limpia el rol
-      navigate("/"); // Redirige al inicio
+      await logout();
+      setRole(null);
+      navigate("/");
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }

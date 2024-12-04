@@ -1,12 +1,37 @@
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import '../Css/Login.css';
+import { login } from '../api/Login';
+import { useNavigate } from 'react-router-dom';
 
-
-const Login = () => {
-    const [email, setEmail] = useState('');
+const Login = ({ setRole }) => {
+    const [cedula, setCedula] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        setLoading(true);
+        setError("");
+      
+        try {
+          const result = await login(cedula, password);
+          alert(result.mensaje); // Mensaje del backend
+          setRole(result.rol); // Actualiza el rol inmediatamente
+      
+          if (result.rol === "cliente") {
+            navigate("/");
+          } else if (result.rol === "analista") {
+            navigate("/InicioAnalistas");
+          }
+        } catch (err) {
+          setError(err.message); // Maneja errores
+        } finally {
+          setLoading(false);
+        }
+      };
+      
 
     return (
         <div className="login-container">
@@ -16,12 +41,15 @@ const Login = () => {
                 </div>
 
                 <div className="login-form">
+                    {error && <p className="error-message">{error}</p>}
+
                     <span className="p-input-icon-left">
                         <i className="pi pi-user" />
                         <InputText
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={cedula}
+                            onChange={(e) => setCedula(e.target.value)}
                             placeholder="Digite número de cédula"
+                            disabled={loading}
                         />
                     </span>
 
@@ -32,16 +60,23 @@ const Login = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Contraseña"
+                            disabled={loading}
                         />
                     </span>
 
-                    <Button label="Iniciar Sesión"  className="login-btn" />
+                    <Button
+                        label={loading ? 'Cargando...' : 'Iniciar Sesión'}
+                        onClick={handleLogin}
+                        className="login-btn"
+                        disabled={loading}
+                    />
                 </div>
             </div>
+
             <div className="image-section">
                 <img src="/img/login.png" alt="Decorative" className='imagenLogin' />
             </div>
-        </div>
+        </div >
     );
 };
 

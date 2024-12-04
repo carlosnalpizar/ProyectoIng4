@@ -48,14 +48,13 @@ export const logout = async () => {
 
 export const getProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:3333/auth/profile', {
-        withCredentials: true, // Permite enviar cookies de sesión
+      const response = await axios.get("http://localhost:3333/auth/profile", {
+        withCredentials: true, // Envía cookies para la autenticación
       });
-  
-      return response.data.perfil; // Debe incluir { rol: "cliente" } o similar
+      return response.data; // Asegúrate de que incluye `rol` como propiedad
     } catch (error) {
-      console.error('Error al obtener el perfil:', error);
-      throw new Error('No se pudo obtener el perfil');
+      console.error("Error al obtener el perfil:", error);
+      throw new Error("No se pudo obtener el perfil del usuario");
     }
   };
   

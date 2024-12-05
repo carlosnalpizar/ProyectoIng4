@@ -18,7 +18,7 @@ const LoanAnalystDashboard = () => {
       icon: <FileSpreadsheet className="icon-style" />,
       title: "Formalización de Préstamos",
       description: "Proceso completo de solicitud y aprobación de préstamos",
-      route: "/formalización-préstamos"
+      route: "/FormalizacionPrestamos"
     },
     {
       icon: <Calculator className="icon-style" />,
@@ -31,12 +31,6 @@ const LoanAnalystDashboard = () => {
       title: "Cobro de Pagos",
       description: "Seguimiento y gestión de cobranzas",
       route: "/cobro-pagos"
-    },
-    {
-      icon: <Handshake className="icon-style" />,
-      title: "Gestión de Pagos",
-      description: "Control y administración de flujos de pago",
-      route: "/gestión-pagos"
     },
   ];
 

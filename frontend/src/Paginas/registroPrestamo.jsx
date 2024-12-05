@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';  // Importación corregida
+import React, { useState, useEffect, useRef } from 'react'; 
 import '../Css/registroPrestamo.css';
 import { insertarPrestamo } from "../api/RegistrarPrestamo.api";
 import axios from 'axios';
 import { Toast } from 'primereact/toast';
+import { getProfile } from '../api/Login';
+
 
 const BankLoanForm = () => {
   const [formData, setFormData] = useState({
@@ -12,27 +14,49 @@ const BankLoanForm = () => {
     fechaVencimiento: '',
     numeroPrestamo: '',
     tasaInteresMoratoria: 10,
-    diaPago: '', 
+    diaPago: '',
     clientesPersonaCedula: '',
-    IdClientes: '', 
-    estadoPrestamo: 2 
+    IdClientes: '',
+    estadoPrestamo: 2
   });
 
   const [errors, setErrors] = useState({});
-  const toast = useRef(null);  
+  const toast = useRef(null);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const profileResponse = await getProfile();
+        const profile = profileResponse.perfil; 
+  
+        console.log('Usuario logueado:', profile);
+  
+  
+        setFormData((prevState) => ({
+          ...prevState,
+          clientesPersonaCedula: profile.personaCedula || '',
+          IdClientes: profile.idClientes || '', 
+        }));
+      } catch (error) {
+        console.error('Error al obtener los datos del usuario logueado:', error);
+      }
+    };
+  
+    fetchUserData();
+  }, []); 
+  
   useEffect(() => {
     const fetchLastLoanNumber = async () => {
       try {
         const response = await axios.get("http://localhost:3333/prestamos/obtenerultimo");
         console.log("Respuesta de la API:", response.data);
-  
-        const ultimoPrestamo = response.data.ultimoPrestamo || "PRE-0";  
-  
+
+        const ultimoPrestamo = response.data.ultimoPrestamo || "PRE-0";
+
         const numeroPrestamo = parseInt(ultimoPrestamo.split("PRE-")[1], 10);
-  
+
         const nuevoNumeroPrestamo = `PRE-${numeroPrestamo + 1}`;
-  
+
         setFormData(prevState => ({
           ...prevState,
           numeroPrestamo: nuevoNumeroPrestamo
@@ -41,11 +65,11 @@ const BankLoanForm = () => {
         console.error("Error al obtener el último número de préstamo:", error);
       }
     };
-  
+
     fetchLastLoanNumber();
   }, []);
-  
-  
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -95,18 +119,21 @@ const BankLoanForm = () => {
           ...formData,
           estadoPrestamo: 2,
         };
+  
+        console.log('Datos enviados al backend:', prestamoNuevo);
+  
         const resultado = await insertarPrestamo(prestamoNuevo);
-
+  
         console.log("Préstamo insertado exitosamente:", resultado);
-        toast.current.show({ severity: 'success', summary: 'Exitoso', detail: 'Préstamo procesado de manera exitosa', life: 3000 });  // Mostrar Toast de éxito
-
+        toast.current.show({ severity: 'success', summary: 'Exitoso', detail: 'Préstamo procesado de manera exitosa', life: 3000 });
       } catch (error) {
         console.error("Error al insertar el préstamo:", error);
-        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Hubo un problema al registrar el préstamo', life: 3000 });  // Mostrar Toast de error
+        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Hubo un problema al registrar el préstamo', life: 3000 });
       }
     }
   };
- 
+  
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="containerPrestamos">
@@ -214,10 +241,11 @@ const BankLoanForm = () => {
                   type="text"
                   id="clientesPersonaCedula"
                   name="clientesPersonaCedula"
-                  value={formData.clientesPersonaCedula}
-                  onChange={handleChange}
+                  value={formData.clientesPersonaCedula} // Aquí debe aparecer personaCedula
                   className="form-input"
-                  placeholder="Cédula del cliente"
+                  disabled
+                  onChange={handleChange}
+
                 />
                 {errors.clientesPersonaCedula && <p className="error-message">{errors.clientesPersonaCedula}</p>}
               </div>
@@ -229,10 +257,10 @@ const BankLoanForm = () => {
                   type="text"
                   id="IdClientes"
                   name="IdClientes"
-                  value={formData.IdClientes}
-                  onChange={handleChange}
+                  value={formData.IdClientes} // Aquí debe aparecer el idCliente (si existe)
                   className="form-input"
-                  placeholder="ID del cliente"
+                  disabled
+                  onChange={handleChange}
                 />
                 {errors.IdClientes && <p className="error-message">{errors.IdClientes}</p>}
               </div>

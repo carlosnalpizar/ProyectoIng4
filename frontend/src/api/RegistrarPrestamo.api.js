@@ -17,7 +17,7 @@ export const insertarPrestamo = async (prestamoNuevo) => {
 
 export const obtenerPrestamos = async () => {
   try {
-    const response = await axios.get("http://localhost:3333/prestamo/lista");
+    const response = await axios.get("http://localhost:3333/prestamos/listaPrestamos");
     return response.data;
   } catch (error) {
     console.error("Error al obtener la lista de préstamos:", error);
@@ -65,3 +65,37 @@ export const modificarPrestamo = async (idPrestamos, prestamoActualizado) => {
   }
 };
 
+export const aprobarPrestamo = async (idPrestamo) => {
+  try {
+    const response = await axios.put(
+      "http://localhost:3333/prestamos/aprobar",
+      { idPrestamo }
+    );
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error("Error del servidor al aprobar el préstamo:", error.response.data);
+    } else {
+      console.error("Error al aprobar el préstamo:", error.message);
+    }
+    throw error;
+  }
+};
+
+
+export const rechazarPrestamo = async (idPrestamo) => {
+  try {
+    const response = await axios.put(
+      "http://localhost:3333/prestamos/rechazar",
+      { idPrestamo }
+    );
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error("Error del servidor al rechazar el préstamo:", error.response.data);
+    } else {
+      console.error("Error al rechazar el préstamo:", error.message);
+    }
+    throw error;
+  }
+};

@@ -18,7 +18,7 @@ const LoanAnalystDashboard = () => {
       icon: <FileSpreadsheet className="icon-style" />,
       title: "Formalización de Préstamos",
       description: "Proceso completo de solicitud y aprobación de préstamos",
-      route: "/formalización-préstamos"
+      route: "/FormalizacionPrestamos"
     },
     {
       icon: <Calculator className="icon-style" />,

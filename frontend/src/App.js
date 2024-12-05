@@ -8,6 +8,7 @@ import RegistroPrestamo from './Paginas/registroPrestamo';
 import MantenimientoCliente from './Paginas/mantenimientoClientes';
 import Informacion from './Paginas/Informacion';
 import GestionClientes from './Paginas/mantenimientoClientes';
+import FormalizacionPrestamos from './Paginas/formalizacionPrestamos';
 import { getProfile } from './api/Login'; // Asegúrate de que esta ruta sea correcta
 import './App.css';
 import 'primereact/resources/primereact.min.css';
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/Informacion" element={<Informacion />} />
         <Route path="/RegistroPrestamo" element={<RegistroPrestamo />} />
         <Route path="/GestionClientes" element={<GestionClientes />} />
+        <Route path="/formalizacionPrestamos" element={<FormalizacionPrestamos />} />
       </Routes>
       <Footer />
     </Router>

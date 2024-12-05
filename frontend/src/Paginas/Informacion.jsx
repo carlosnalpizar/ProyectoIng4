@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import '../Css/informacion.css';
 
 const LoanMotivationPage = () => {
-    // eslint-disable-next-line no-empty-pattern
     const [] = useState(false);
     const navigate = useNavigate();
       

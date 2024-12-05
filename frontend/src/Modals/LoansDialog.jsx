@@ -10,10 +10,6 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
     const [loading, setLoading] = useState(false);
     const toastRef = useRef(null);
 
-    const safeToLowerCase = (value) => {
-        return typeof value === 'string' ? value.toLowerCase() : String(value).toLowerCase();
-    };
-
     const modificarPrestamo = async (loan) => {
         try {
             const fechaInicioFormatted = new Date(loan.fechaInicio).toISOString().split('T')[0];
@@ -25,7 +21,7 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
                 fechaInicio: fechaInicioFormatted,
                 numeroPrestamo: loan.numeroPrestamo,
                 tasaInteresMoratoria: loan.tasaInteresMoratoria,
-                tasaInteresAnual: loan.tasaInteresAnual || 0, // Fallback value for tasaInteresAnual
+                tasaInteresAnual: loan.tasaInteresAnual || 0, 
                 estadoPrestamo: loan.estadoPrestamo,
                 diaPago: loan.diaPago,
                 IdClientes: loan.IdClientes,
@@ -48,7 +44,6 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
     const handleSaveChanges = async () => {
         if (!selectedLoan) return;
 
-        // Validar los campos requeridos
         const requiredFields = [
             'monto',
             'plazoMeses',

@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// URL base de tu API
 const BASE_URL = 'http://localhost:3333';
 
 export const login = async (personaCedula, contrasena) => {
@@ -17,15 +16,12 @@ export const login = async (personaCedula, contrasena) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      // Errores del servidor
       console.error('Error en login:', error.response.data);
       throw new Error(error.response.data.mensaje || 'Error en el servidor');
     } else if (error.request) {
-      // La solicitud no llegó al servidor
       console.error('Error en la red:', error.request);
       throw new Error('Error en la red o el servidor no responde');
     } else {
-      // Otros errores
       console.error('Error desconocido:', error.message);
       throw new Error('Ocurrió un error desconocido');
     }
@@ -36,10 +32,10 @@ export const login = async (personaCedula, contrasena) => {
 export const logout = async () => {
   try {
     const response = await axios.post(`${BASE_URL}/auth/logout`, {}, {
-      withCredentials: true, // Permite enviar cookies en la solicitud
+      withCredentials: true,
     });
 
-    return response.data; // Retorna la respuesta del servidor
+    return response.data; 
   } catch (error) {
     console.error('Error en logout:', error.response?.data?.mensaje || error.message);
     throw new Error(error.response?.data?.mensaje || 'Error al cerrar sesión');
@@ -49,9 +45,9 @@ export const logout = async () => {
 export const getProfile = async () => {
     try {
       const response = await axios.get("http://localhost:3333/auth/profile", {
-        withCredentials: true, // Envía cookies para la autenticación
+        withCredentials: true, 
       });
-      return response.data; // Asegúrate de que incluye `rol` como propiedad
+      return response.data;
     } catch (error) {
       console.error("Error al obtener el perfil:", error);
       throw new Error("No se pudo obtener el perfil del usuario");

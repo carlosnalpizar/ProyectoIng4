@@ -20,10 +20,10 @@ const LoanModal = ({ visible, action, prestamo, onHide }) => {
     clientesPersonaCedula: "",
   });
   const [isCuotaEditable, setIsCuotaEditable] = useState(false);
-  const [isActionDisabled, setIsActionDisabled] = useState(false); // Estado para deshabilitar botones
+  const [isActionDisabled, setIsActionDisabled] = useState(false);
   const toastRef = useRef(null);
 
-  // Cargar datos del usuario logueado
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -43,7 +43,6 @@ const LoanModal = ({ visible, action, prestamo, onHide }) => {
     fetchUserData();
   }, []);
 
-  // Configurar datos iniciales del préstamo y deshabilitar botones si corresponde
   useEffect(() => {
     if (prestamo) {
       const cuota =
@@ -60,12 +59,12 @@ const LoanModal = ({ visible, action, prestamo, onHide }) => {
         prestamoClienteCuota: cuota,
       }));
 
-      // Detectar si el préstamo ya está aprobado o rechazado
+
       setIsActionDisabled(prestamo.estadoPrestamo === 1 || prestamo.estadoPrestamo === 4);
     }
   }, [prestamo]);
 
-  // Manejar guardar (Aprobar/Rechazar)
+
   const handleSave = async () => {
     if (!formData.idPrestamoFormal || !formData.prestamoscliente_idPrestamos) {
       toastRef.current.show({
@@ -126,14 +125,14 @@ const LoanModal = ({ visible, action, prestamo, onHide }) => {
         icon="pi pi-times"
         onClick={onHide}
         className="p-button-text p-button-secondary mr-2"
-        disabled={isActionDisabled} // Deshabilitar botón
+        disabled={isActionDisabled} 
       />
       <Button
         label={action === "approve" ? "Aprobar" : "Rechazar"}
         icon={action === "approve" ? "pi pi-check" : "pi pi-times"}
         onClick={handleSave}
         className={action === "approve" ? "p-button-success" : "p-button-danger"}
-        disabled={isActionDisabled} // Deshabilitar botón
+        disabled={isActionDisabled}
       />
     </div>
   );

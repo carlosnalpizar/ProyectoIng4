@@ -9,7 +9,7 @@ import MantenimientoCliente from './Paginas/mantenimientoClientes';
 import Informacion from './Paginas/Informacion';
 import GestionClientes from './Paginas/mantenimientoClientes';
 import FormalizacionPrestamos from './Paginas/formalizacionPrestamos';
-import { getProfile } from './api/Login'; // Asegúrate de que esta ruta sea correcta
+import { getProfile } from './api/Login'; 
 import './App.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -17,35 +17,35 @@ import Navbar from './componentes/Navbar';
 import Footer from './componentes/Footer';
 
 const App = () => {
-  const [role, setRole] = useState(''); // Manejar el rol en el estado global
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticación
+  const [role, setRole] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Cargar el perfil del usuario al montar el componente
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const profile = await getProfile(); // Llama al backend para obtener el perfil
+        const profile = await getProfile();
         console.log('Usuario logueado:', profile);
-        setRole(profile.rol); // Actualiza el rol en el estado global
-        setIsAuthenticated(true); // Usuario autenticado
+        setRole(profile.rol); 
+        setIsAuthenticated(true);
       } catch (error) {
         console.error('Error al obtener el perfil:', error);
-        setIsAuthenticated(false); // Usuario no autenticado
+        setIsAuthenticated(false); 
       }
     };
 
-    fetchProfile(); // Llama a fetchProfile al montar el componente
-  }, []); // Se ejecuta solo una vez al montar
+    fetchProfile();
+  }, []); 
 
   return (
     <Router>
-      <Navbar role={role} setRole={setRole} isAuthenticated={isAuthenticated} /> {/* Pasar el rol, setRole y estado de autenticación */}
+      <Navbar role={role} setRole={setRole} isAuthenticated={isAuthenticated} /> 
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/InicioAnalistas" element={<InicioAnalistas />} />
         <Route
           path="/IniciarSesion"
-          element={<Login setRole={setRole} />} // Pasar setRole al Login
+          element={<Login setRole={setRole} />} 
         />
         <Route path="/mantenimientoClientes" element={<MantenimientoCliente />} />
         <Route path="/RegistroAnalista" element={<RegistroAnalista />} />

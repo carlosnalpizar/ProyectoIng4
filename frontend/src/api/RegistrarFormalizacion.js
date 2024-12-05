@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Agregar una formalización
 export const agregarFormalizacion = async (formalizacion) => {
   try {
     const response = await axios.post(
@@ -18,7 +17,6 @@ export const agregarFormalizacion = async (formalizacion) => {
   }
 };
 
-// Modificar una formalización
 export const modificarFormalizacion = async (formalizacionActualizada) => {
   try {
     const response = await axios.put(
@@ -32,7 +30,6 @@ export const modificarFormalizacion = async (formalizacionActualizada) => {
   }
 };
 
-// Listar todas las formalizaciones
 export const listarFormalizaciones = async () => {
   try {
     const response = await axios.get("http://localhost:3333/formalizacion/listar");
@@ -43,7 +40,6 @@ export const listarFormalizaciones = async () => {
   }
 };
 
-// Eliminar una formalización por ID
 export const eliminarFormalizacionPorId = async (id) => {
   try {
     const response = await axios.delete(

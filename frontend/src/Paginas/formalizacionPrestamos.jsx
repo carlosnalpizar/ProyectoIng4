@@ -52,13 +52,6 @@ const PrestamosTable = () => {
         setModalVisible(true);
     };
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('es-MX', {
-            style: 'currency',
-            currency: 'MXN'
-        });
-    };
-
     const estadoDropdownOptions = [
         { label: 'Todos los Estados', value: 'TODOS' },
         { label: 'Activo', value: 'Activo' },
@@ -97,7 +90,7 @@ const PrestamosTable = () => {
     };
 
     const montoColumnTemplate = (rowData) => {
-        return formatCurrency(rowData.monto);
+        return (rowData.monto);
     };
 
     const accionesColumnTemplate = (rowData) => {
@@ -110,14 +103,14 @@ const PrestamosTable = () => {
                     className="p-button-rounded custom-button-success"
                     tooltip="Aprobar"
                     onClick={() => openModal('approve', rowData)}
-                    disabled={isDisabled} // Deshabilitar si está "Activo" o "Rechazado"
+                    disabled={isDisabled}
                 />
                 <Button
                     icon="pi pi-times"
                     className="p-button-rounded custom-button-danger"
                     tooltip="Rechazar"
                     onClick={() => openModal('reject', rowData)}
-                    disabled={isDisabled} // Deshabilitar si está "Activo" o "Rechazado"
+                    disabled={isDisabled} 
                 />
             </div>
         );

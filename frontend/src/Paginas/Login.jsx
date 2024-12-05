@@ -17,8 +17,8 @@ const Login = ({ setRole }) => {
       
         try {
           const result = await login(cedula, password);
-          alert(result.mensaje); // Mensaje del backend
-          setRole(result.rol); // Actualiza el rol inmediatamente
+          alert(result.mensaje); 
+          setRole(result.rol); 
       
           if (result.rol === "cliente") {
             navigate("/");
@@ -26,7 +26,7 @@ const Login = ({ setRole }) => {
             navigate("/InicioAnalistas");
           }
         } catch (err) {
-          setError(err.message); // Maneja errores
+          setError(err.message);
         } finally {
           setLoading(false);
         }

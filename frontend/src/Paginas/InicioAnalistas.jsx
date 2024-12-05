@@ -32,12 +32,6 @@ const LoanAnalystDashboard = () => {
       description: "Seguimiento y gestión de cobranzas",
       route: "/cobro-pagos"
     },
-    {
-      icon: <Handshake className="icon-style" />,
-      title: "Gestión de Pagos",
-      description: "Control y administración de flujos de pago",
-      route: "/gestión-pagos"
-    },
   ];
 
  

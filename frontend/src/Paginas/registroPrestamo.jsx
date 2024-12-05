@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';  // Importación corregida
+import React, { useState, useEffect, useRef } from 'react'; 
 import '../Css/registroPrestamo.css';
 import { insertarPrestamo } from "../api/RegistrarPrestamo.api";
 import axios from 'axios';
@@ -23,20 +23,19 @@ const BankLoanForm = () => {
   const [errors, setErrors] = useState({});
   const toast = useRef(null);
 
-  // Cargar los datos del usuario logueado
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const profileResponse = await getProfile(); // Llama al backend para obtener los datos del usuario
-        const profile = profileResponse.perfil; // Accede a los datos dentro de `perfil`
+        const profileResponse = await getProfile();
+        const profile = profileResponse.perfil; 
   
         console.log('Usuario logueado:', profile);
   
-        // Actualiza el estado formData con los valores correctos
+  
         setFormData((prevState) => ({
           ...prevState,
-          clientesPersonaCedula: profile.personaCedula || '', // Asigna personaCedula
-          IdClientes: profile.idClientes || '', // Cambia aquí a "IdClientes"
+          clientesPersonaCedula: profile.personaCedula || '',
+          IdClientes: profile.idClientes || '', 
         }));
       } catch (error) {
         console.error('Error al obtener los datos del usuario logueado:', error);
@@ -44,7 +43,7 @@ const BankLoanForm = () => {
     };
   
     fetchUserData();
-  }, []); // Ejecuta solo una vez al montar
+  }, []); 
   
   useEffect(() => {
     const fetchLastLoanNumber = async () => {
@@ -118,7 +117,7 @@ const BankLoanForm = () => {
       try {
         const prestamoNuevo = {
           ...formData,
-          estadoPrestamo: 2, // Asegúrate de incluir todos los campos necesarios
+          estadoPrestamo: 2,
         };
   
         console.log('Datos enviados al backend:', prestamoNuevo);

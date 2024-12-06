@@ -6,6 +6,7 @@ import InicioAnalistas from './Paginas/InicioAnalistas';
 import RegistroAnalista from './Paginas/registroAnalista';
 import RegistroPrestamo from './Paginas/registroPrestamo';
 import MantenimientoCliente from './Paginas/mantenimientoClientes';
+import MantenimientoAnalistas from './Paginas/mantenimientoAnalistas';
 import Informacion from './Paginas/Informacion';
 import GestionClientes from './Paginas/mantenimientoClientes';
 import FormalizacionPrestamos from './Paginas/formalizacionPrestamos';
@@ -48,6 +49,7 @@ const App = () => {
           element={<Login setRole={setRole} />} 
         />
         <Route path="/mantenimientoClientes" element={<MantenimientoCliente />} />
+        <Route path="/mantenimientoAnalistas" element={<MantenimientoAnalistas />} />
         <Route path="/RegistroAnalista" element={<RegistroAnalista />} />
         <Route path="/Informacion" element={<Informacion />} />
         <Route path="/RegistroPrestamo" element={<RegistroPrestamo />} />

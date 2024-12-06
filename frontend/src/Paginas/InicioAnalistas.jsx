@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, FileSpreadsheet, CreditCard, Calculator, Handshake } from 'lucide-react';
+import { Users, UserRoundCog, FileSpreadsheet, CreditCard, Calculator, CircleDollarSign } from 'lucide-react';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';  
 import '../Css/inicioAnalistas.css'; 
@@ -12,6 +12,18 @@ const LoanAnalystDashboard = () => {
       icon: <Users className="icon-style" />,
       title: "Gestión de Clientes",
       description: "Administración integral de datos y relaciones con clientes",
+      route: "/GestionClientes" 
+    },
+    {
+      icon: <UserRoundCog  className="icon-style" />,
+      title: "Gestión de Analistas",
+      description: "Administración integral de datos y modificación de los mismos",
+      route: "/mantenimientoAnalistas" 
+    },
+    {
+      icon: <CircleDollarSign  className="icon-style" />,
+      title: "Gestión de Préstamos",
+      description: "Administración integral de datos y mayor informacion de la formalizacion",
       route: "/GestionClientes" 
     },
     {

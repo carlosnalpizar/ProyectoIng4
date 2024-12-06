@@ -29,7 +29,7 @@ export const insertarAnalista = async (analistaNuevo) => {
 
 export const obtenerAnalistas = async () => {
   try {
-    const response = await axios.get('http://localhost:3333/analistas/obtenerAnalistas');
+    const response = await axios.get('http://localhost:3333/analistas/listar');
     return response.data;
   } catch (error) {
     console.error('Error al obtener la lista de analistas:', error);
@@ -47,44 +47,39 @@ export const obtenerAnalistaPorId = async (personaCedula) => {
   }
 };
 
-export const eliminarAnalista = async (personaCedula) => {
+export const eliminarAnalista = async (idanalistaCredito) => {
   try {
-    const response = await axios.delete(`http://localhost:3333/analista/eliminarAnalista/${personaCedula}`);
-    return response.data;
+      console.log('ID enviado al backend:', idanalistaCredito); // Depuración
+      const response = await axios.delete(`http://localhost:3333/analistas/eliminar/${idanalistaCredito}`);
+      return response.data;
   } catch (error) {
-    console.error('Error al eliminar el analista:', error);
-    throw error;
+      console.error('Error al eliminar el analista:', error);
+      throw error;
   }
 };
 
-export const modificarAnalista = async (personaCedula, analistaActualizado) => {
-  try {
-    const { nombre, primerApellido, segundoApellido, telefono, correoElectronico, contrasena } = analistaActualizado;
-    console.log('Datos enviados para modificar analista:', {
-      nombre,
-      primerApellido,
-      segundoApellido,
-      telefono,
-      correoElectronico,
-      contrasena,
-    });
 
+
+export const modificarAnalista = async (analistaActualizado) => {
+  try {
     const response = await axios.put(
-      `http://localhost:3333/analista/modificarAnalista/${personaCedula}`,
+      'http://localhost:3333/analistas/modificarAnalista',
+      analistaActualizado,
       {
-        nombre,
-        primerApellido,
-        segundoApellido,
-        telefono,
-        correoElectronico,
-        contrasena,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
     );
-
-    console.log('Respuesta de la API:', response.data);
+    console.log('Response from API:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Error al modificar el analista:', error);
+    console.error('Error in modificarAnalista:', error.response || error.message);
     throw error;
   }
 };
+
+
+
+
+

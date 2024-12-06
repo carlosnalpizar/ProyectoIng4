@@ -21,7 +21,7 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
                 fechaInicio: fechaInicioFormatted,
                 numeroPrestamo: loan.numeroPrestamo,
                 tasaInteresMoratoria: loan.tasaInteresMoratoria,
-                tasaInteresAnual: loan.tasaInteresAnual || 0, 
+                tasaInteresAnual: loan.tasaInteresAnual || 0,
                 estadoPrestamo: loan.estadoPrestamo,
                 diaPago: loan.diaPago,
                 IdClientes: loan.IdClientes,
@@ -113,15 +113,24 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
                                             <span className="loan-number">Préstamo #{loan.numeroPrestamo}</span>
                                             <span
                                                 className={`loan-status ${loan.estadoPrestamo === 1
-                                                    ? 'activo'
-                                                    : loan.estadoPrestamo === 2
-                                                        ? 'pendiente'
-                                                        : 'cancelado'}`}
+                                                        ? 'activo'
+                                                        : loan.estadoPrestamo === 2
+                                                            ? 'pendiente'
+                                                            : loan.estadoPrestamo === 4
+                                                                ? 'rechazado'
+                                                                : ''
+                                                    }`}
                                             >
-                                                {loan.estadoPrestamo === 1 ? 'Activo' :
-                                                    loan.estadoPrestamo === 2 ? 'Pendiente' : 'Cancelado'}
+                                                {loan.estadoPrestamo === 1
+                                                    ? 'Activo'
+                                                    : loan.estadoPrestamo === 2
+                                                        ? 'Pendiente'
+                                                        : loan.estadoPrestamo === 4
+                                                            ? 'Rechazado'
+                                                            : ''}
                                             </span>
                                         </div>
+
                                         <div className="loan-info">
                                             <div className="loan-info-row">
                                                 <span className="label">Plazo:</span>
@@ -260,7 +269,7 @@ const LoansDialog = ({ visible, loans, hideDialog, onEditLoan, onDeleteLoan }) =
                                     >
                                         <option value="1">Activo</option>
                                         <option value="2">Pendiente</option>
-                                        <option value="3">Cancelado</option>
+                                        <option value="3">Rechazado</option>
                                     </select>
                                 </div>
 

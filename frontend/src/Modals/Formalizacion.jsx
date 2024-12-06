@@ -67,56 +67,62 @@ const LoanModal = ({ visible, action, prestamo, onHide }) => {
 
   const handleSave = async () => {
     if (!formData.idPrestamoFormal || !formData.prestamoscliente_idPrestamos) {
-      toastRef.current.show({
-        severity: "warn",
-        summary: "Campos obligatorios",
-        detail: "Por favor, complete todos los campos.",
-        life: 3000,
-      });
-      return;
+        toastRef.current.show({
+            severity: "warn",
+            summary: "Campos obligatorios",
+            detail: "Por favor, complete todos los campos.",
+            life: 3000,
+        });
+        return;
     }
 
     try {
-      if (action === "approve") {
-        await aprobarPrestamo(formData.idPrestamoFormal);
-        await agregarFormalizacion({
-          analistaIdAnalista: formData.idanalistaCredito,
-          analistaPersonaCedula: formData.personaCedula,
-          prestamoClienteCuota: formData.prestamoClienteCuota,
-          prestamoscliente_idPrestamos: formData.prestamoscliente_idPrestamos,
-        });
+        if (action === "approve") {
+            await aprobarPrestamo(formData.idPrestamoFormal);
+            await agregarFormalizacion({
+                analistaIdAnalista: formData.idanalistaCredito,
+                analistaPersonaCedula: formData.personaCedula,
+                prestamoClienteCuota: formData.prestamoClienteCuota,
+                prestamoscliente_idPrestamos: formData.prestamoscliente_idPrestamos,
+            });
 
-        toastRef.current.show({
-          severity: "success",
-          summary: "Préstamo Aprobado",
-          detail: "El préstamo fue aprobado y formalizado correctamente.",
-          life: 3000,
-        });
-      } else if (action === "reject") {
-        await rechazarPrestamo(formData.idPrestamoFormal);
+            toastRef.current.show({
+                severity: "success",
+                summary: "Préstamo Aprobado",
+                detail: "El préstamo fue aprobado y formalizado correctamente.",
+                life: 1000,
+            });
+        } else if (action === "reject") {
+            await rechazarPrestamo(formData.idPrestamoFormal);
 
-        toastRef.current.show({
-          severity: "info",
-          summary: "Préstamo Rechazado",
-          detail: "El préstamo fue rechazado correctamente.",
-          life: 3000,
-        });
-      }
+            toastRef.current.show({
+                severity: "info",
+                summary: "Préstamo Rechazado",
+                detail: "El préstamo fue rechazado correctamente.",
+                life: 1000,
+            });
+        }
 
-      setIsActionDisabled(true);
+        setIsActionDisabled(true);
+
+        // Recarga la página después de que el Toast desaparezca
+        setTimeout(() => {
+            window.location.reload();
+        }, 3000); // Coincide con el tiempo de vida del Toast
     } catch (error) {
-      toastRef.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: `Error al ${action === "approve" ? "aprobar" : "rechazar"} el préstamo.`,
-        life: 3000,
-      });
-      console.error(
-        `Error al ${action === "approve" ? "aprobar" : "rechazar"} el préstamo:`,
-        error
-      );
+        toastRef.current.show({
+            severity: "error",
+            summary: "Error",
+            detail: `Error al ${action === "approve" ? "aprobar" : "rechazar"} el préstamo.`,
+            life: 3000,
+        });
+        console.error(
+            `Error al ${action === "approve" ? "aprobar" : "rechazar"} el préstamo:`,
+            error
+        );
     }
-  };
+};
+
 
   const dialogFooter = (
     <div className="flex justify-content-end">

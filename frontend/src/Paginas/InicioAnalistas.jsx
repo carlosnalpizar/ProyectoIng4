@@ -24,7 +24,7 @@ const LoanAnalystDashboard = () => {
       icon: <CircleDollarSign  className="icon-style" />,
       title: "Gestión de Préstamos",
       description: "Administración integral de datos y mayor informacion de la formalizacion",
-      route: "/GestionClientes" 
+      route: "/mantenimientoFormalizacion" 
     },
     {
       icon: <FileSpreadsheet className="icon-style" />,

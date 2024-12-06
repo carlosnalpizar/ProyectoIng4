@@ -7,6 +7,7 @@ import RegistroAnalista from './Paginas/registroAnalista';
 import RegistroPrestamo from './Paginas/registroPrestamo';
 import MantenimientoCliente from './Paginas/mantenimientoClientes';
 import MantenimientoAnalistas from './Paginas/mantenimientoAnalistas';
+import MantenimientoFormalizacion from './Paginas/mantenimientoFormalizacion';
 import Informacion from './Paginas/Informacion';
 import GestionClientes from './Paginas/mantenimientoClientes';
 import FormalizacionPrestamos from './Paginas/formalizacionPrestamos';
@@ -50,6 +51,7 @@ const App = () => {
         />
         <Route path="/mantenimientoClientes" element={<MantenimientoCliente />} />
         <Route path="/mantenimientoAnalistas" element={<MantenimientoAnalistas />} />
+        <Route path="/mantenimientoFormalizacion" element={<MantenimientoFormalizacion />} />
         <Route path="/RegistroAnalista" element={<RegistroAnalista />} />
         <Route path="/Informacion" element={<Informacion />} />
         <Route path="/RegistroPrestamo" element={<RegistroPrestamo />} />

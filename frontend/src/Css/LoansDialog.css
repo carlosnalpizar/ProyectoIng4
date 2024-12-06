@@ -75,10 +75,13 @@
     color: white;
   }
 
-  .loan-status.vencido {
-    background-color: #d9534f;
-    color: white;
-  }
+  .loan-status.rechazado {
+    background-color: #d9534f; /* Rojo */
+    color: white; /* Texto blanco */
+    padding: 5px 10px; /* Opcional: Añade espacio interno */
+    border-radius: 5px; /* Opcional: Bordes redondeados */
+    font-weight: bold; /* Opcional: Texto en negrita */
+}
 
   .loan-info-row {
     display: flex;

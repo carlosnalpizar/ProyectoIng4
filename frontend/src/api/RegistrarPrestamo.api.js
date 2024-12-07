@@ -25,6 +25,27 @@ export const obtenerPrestamos = async () => {
   }
 };
 
+export const obtenerPrestamosTODO = async () => {
+  try {
+    const response = await axios.get("http://localhost:3333/prestamos/listaPrestamos");
+    console.log("Respuesta completa de la API:", response.data); // Depura la respuesta completa
+
+    // Extrae solo el array de préstamos (posición [0] de "prestamos")
+    const prestamos = response.data.prestamos?.[0];
+
+    if (!Array.isArray(prestamos)) {
+      throw new Error("Los datos de préstamos no están en el formato esperado.");
+    }
+
+    return prestamos; // Devuelve solo el array de préstamos
+  } catch (error) {
+    console.error("Error al obtener la lista de préstamos:", error);
+    throw error;
+  }
+};
+
+  
+
 
 export const obtenerUltimoPrestamo = async () => {
   try {

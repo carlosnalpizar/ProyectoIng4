@@ -9,6 +9,7 @@ import MantenimientoCliente from './Paginas/mantenimientoClientes';
 import MantenimientoAnalistas from './Paginas/mantenimientoAnalistas';
 import MantenimientoFormalizacion from './Paginas/mantenimientoFormalizacion';
 import Informacion from './Paginas/Informacion';
+import generarPdfFormalizacionPrestamos from './Paginas/pdfFormalizacionPrestamos';
 import GestionClientes from './Paginas/mantenimientoClientes';
 import FormalizacionPrestamos from './Paginas/formalizacionPrestamos';
 import { getProfile } from './api/Login'; 
@@ -57,6 +58,7 @@ const App = () => {
         <Route path="/RegistroPrestamo" element={<RegistroPrestamo />} />
         <Route path="/GestionClientes" element={<GestionClientes />} />
         <Route path="/formalizacionPrestamos" element={<FormalizacionPrestamos />} />
+        <Route path="/pdfFormalizacion" element={<generarPdfFormalizacionPrestamos />} />
       </Routes>
       <Footer />
     </Router>

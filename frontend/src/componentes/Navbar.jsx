@@ -3,6 +3,8 @@ import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../api/Login";
+import { generarPdfFormalizacionPrestamos } from "../Paginas/pdfFormalizacionPrestamos";
+import { generarPdfClientes } from "../Paginas/pdfClientes";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -110,6 +112,20 @@ const Navbar = ({ role, setRole }) => {
                     label="Gestionar Clientes"
                     icon="pi pi-users"
                     onClick={() => navigate("/GestionClientes")}
+                    className="barraNavegacion"
+                    style={{ width: "100%", marginTop: "10px" }}
+                  />
+                    <Button
+                    label="Reporte Formalizacion"
+                    icon="pi pi-file"
+                    onClick={generarPdfFormalizacionPrestamos} // Llama a la función importada
+                    className="barraNavegacion"
+                    style={{ width: "100%", marginTop: "10px" }}
+                  />
+                        <Button
+                    label="Reporte Clientes"
+                    icon="pi pi-file"
+                    onClick={generarPdfClientes} // Llama a la función importada
                     className="barraNavegacion"
                     style={{ width: "100%", marginTop: "10px" }}
                   />

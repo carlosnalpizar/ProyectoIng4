@@ -55,3 +55,18 @@ export const eliminarFormalizacionPorId = async (id) => {
     throw error;
   }
 };
+
+export const fetchPrestamosFormalizados = async () => {
+  try {
+    const response = await axios.get("http://localhost:3333/formalizacion/listarTODO"); // Ajusta tu endpoint
+    if (response.data.success) {
+      return response.data.data;
+    } else {
+      console.error("Error al obtener los datos:", response.data.message);
+      return [];
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return [];
+  }
+};

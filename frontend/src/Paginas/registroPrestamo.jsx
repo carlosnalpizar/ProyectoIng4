@@ -14,6 +14,7 @@ const BankLoanForm = () => {
     fechaVencimiento: '',
     numeroPrestamo: '',
     tasaInteresMoratoria: 10,
+    tasaInteresAnual: 12.00,
     diaPago: '',
     clientesPersonaCedula: '',
     IdClientes: '',
@@ -73,14 +74,37 @@ const BankLoanForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+  
+    if (name === "diaPago") {
+      // Validate the "diaPago" field
+      if (value > 31) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          diaPago: "El día de pago no puede ser mayor a 31",
+        }));
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: 31,
+        }));
+        return;
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          diaPago: null,
+        }));
+      }
+    }
+  
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
-    if (name === 'plazoMeses' || name === 'fechaInicio') {
+  
+    if (name === "plazoMeses" || name === "fechaInicio") {
       calculateFechaVencimiento(value, name);
     }
   };
+  
 
   const calculateFechaVencimiento = (value, field) => {
     let fechaInicio = formData.fechaInicio ? new Date(formData.fechaInicio) : null;
@@ -189,9 +213,11 @@ const BankLoanForm = () => {
                 {errors.plazoMeses && <p className="error-message">{errors.plazoMeses}</p>}
               </div>
 
-              {/* Fecha de inicio */}
-              <div>
-                <label htmlFor="fechaInicio" className="form-label">Fecha de inicio</label>
+ {/* Fecha de inicio */}
+ <div>
+                <label htmlFor="fechaInicio" className="form-label">
+                  Fecha de inicio
+                </label>
                 <input
                   type="date"
                   id="fechaInicio"
@@ -199,8 +225,11 @@ const BankLoanForm = () => {
                   value={formData.fechaInicio}
                   onChange={handleChange}
                   className="form-input"
+                  min={new Date().toISOString().split("T")[0]}
                 />
-                {errors.fechaInicio && <p className="error-message">{errors.fechaInicio}</p>}
+                {errors.fechaInicio && (
+                  <p className="error-message">{errors.fechaInicio}</p>
+                )}
               </div>
 
               {/* Fecha de vencimiento */}
@@ -217,9 +246,12 @@ const BankLoanForm = () => {
                 />
               </div>
 
+             
               {/* Día de pago */}
               <div>
-                <label htmlFor="diaPago" className="form-label">Día de Pago</label>
+                <label htmlFor="diaPago" className="form-label">
+                  Día de Pago
+                </label>
                 <input
                   type="number"
                   id="diaPago"
@@ -227,28 +259,15 @@ const BankLoanForm = () => {
                   value={formData.diaPago}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="Ingrese día de pago"
                   min="1"
                   max="31"
+                  placeholder="Ingrese día de pago"
                 />
-                {errors.diaPago && <p className="error-message">{errors.diaPago}</p>}
+                {errors.diaPago && (
+                  <p className="error-message">{errors.diaPago}</p>
+                )}
               </div>
 
-              {/* Cédula del Cliente */}
-              <div>
-                <label htmlFor="clientesPersonaCedula" className="form-label">Cédula del Cliente</label>
-                <input
-                  type="text"
-                  id="clientesPersonaCedula"
-                  name="clientesPersonaCedula"
-                  value={formData.clientesPersonaCedula} // Aquí debe aparecer personaCedula
-                  className="form-input"
-                  disabled
-                  onChange={handleChange}
-
-                />
-                {errors.clientesPersonaCedula && <p className="error-message">{errors.clientesPersonaCedula}</p>}
-              </div>
 
               {/* ID Cliente */}
               <div>

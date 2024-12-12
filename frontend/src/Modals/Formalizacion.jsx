@@ -90,7 +90,7 @@ const LoanModal = ({ visible, action, prestamo, onHide }) => {
                 severity: "success",
                 summary: "Préstamo Aprobado",
                 detail: "El préstamo fue aprobado y formalizado correctamente.",
-                life: 1000,
+                life: 3000,
             });
         } else if (action === "reject") {
             await rechazarPrestamo(formData.idPrestamoFormal);
@@ -99,7 +99,7 @@ const LoanModal = ({ visible, action, prestamo, onHide }) => {
                 severity: "info",
                 summary: "Préstamo Rechazado",
                 detail: "El préstamo fue rechazado correctamente.",
-                life: 1000,
+                life: 3000,
             });
         }
 

@@ -172,13 +172,24 @@ const Navbar = ({ role, setRole }) => {
             </div>
           </Sidebar>
 
-          {/* Modal de registro */}
-          <RegistrarCliente
+
+
+{role ? (
+            <Button
+              label="Salir"
+              icon="pi pi-sign-out"
+              onClick={handleLogout}
+              className="barraNavegacion"
+              style={{ marginTop: "10px" }}
+            />
+          ) : (
+            <RegistrarCliente
             visible={isModalVisible}
             onHide={handleCloseModal}
             onRegister={handleRegister}
             className="join-btn"
           />
+          )}
         </div>
       </div>
     </>

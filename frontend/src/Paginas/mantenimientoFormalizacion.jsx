@@ -165,6 +165,7 @@ const PrestamosFormalizadosPage = () => {
                     detail: response.data.message,
                     life: 3000,
                 });
+                window.location.reload(); 
             }
         } catch (error) {
             console.error('Error al actualizar el préstamo:', error);
@@ -174,6 +175,7 @@ const PrestamosFormalizadosPage = () => {
                 detail: 'No se pudo actualizar el préstamo.',
                 life: 3000,
             });
+            window.location.reload(); 
         }
     };
 
@@ -199,11 +201,6 @@ const PrestamosFormalizadosPage = () => {
                 icon="pi pi-trash"
                 className="btn-eliminar"
                 onClick={() => handleEliminar(rowData.idPrestamoFormal)}
-            />
-            <Button
-                icon="pi pi-info-circle"
-                className="btn-info"
-                onClick={() => openDialog(rowData)}
             />
         </div>
     );

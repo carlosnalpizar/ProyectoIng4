@@ -149,12 +149,41 @@ const BankLoanForm = () => {
         const resultado = await insertarPrestamo(prestamoNuevo);
   
         console.log("Préstamo insertado exitosamente:", resultado);
-        toast.current.show({ severity: 'success', summary: 'Exitoso', detail: 'Préstamo procesado de manera exitosa', life: 3000 });
+  
+        toast.current.show({
+          severity: 'success',
+          summary: 'Exitoso',
+          detail: 'Préstamo procesado de manera exitosa',
+          life: 3000,
+        });
+  
+        // Reset the form after successful submission
+        resetForm();
       } catch (error) {
         console.error("Error al insertar el préstamo:", error);
-        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Hubo un problema al registrar el préstamo', life: 3000 });
+        toast.current.show({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Hubo un problema al registrar el préstamo',
+          life: 3000,
+        });
       }
     }
+  };
+  
+  const resetForm = () => {
+    setFormData({
+      monto: '',
+      plazoMeses: '',
+      fechaInicio: '',
+      fechaVencimiento: '',
+      numeroPrestamo: '',
+      tasaInteresMoratoria: 10,
+      tasaInteresAnual: 12.0,
+      diaPago: '',
+      estadoPrestamo: 2,
+    });
+    setErrors({});
   };
   
 
@@ -267,6 +296,23 @@ const BankLoanForm = () => {
                   <p className="error-message">{errors.diaPago}</p>
                 )}
               </div>
+
+              {/* Cédula del Cliente */}
+              <div>
+                <label htmlFor="clientesPersonaCedula" className="form-label">Cédula del Cliente</label>
+                <input
+                  type="text"
+                  id="clientesPersonaCedula"
+                  name="clientesPersonaCedula"
+                  value={formData.clientesPersonaCedula} // Aquí debe aparecer personaCedula
+                  className="form-input"
+                  disabled
+                  onChange={handleChange}
+
+                />
+                {errors.clientesPersonaCedula && <p className="error-message">{errors.clientesPersonaCedula}</p>}
+              </div>
+
 
 
               {/* ID Cliente */}
